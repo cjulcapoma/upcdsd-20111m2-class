@@ -10,7 +10,7 @@
 
 	<bean id="horario" class="pe.edu.upc.dsd.grupoclass.Horario" />
 
-	<jaxws:endpoint id="horarioEndpoint" implementor="#horario"
+	<jaxws:endpoint id="HorarioEndpoint" implementor="#horario"
 		address="/horario" />
 
 </beans>
