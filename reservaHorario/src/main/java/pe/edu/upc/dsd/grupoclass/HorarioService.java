@@ -4,5 +4,7 @@ import javax.jws.WebService;
 
 @WebService
 public interface HorarioService {
-	public String hora(String nombre);
+	public String consultaHorario(String nombre);
+	public String realizarReserva(String nombre);
+	
 }
