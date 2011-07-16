@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class HorarioDoctorBean {
 
-	public int idDoctor;
+	public int idDoctor;  
 	public Date fechaHora;
 	public boolean indReserva;
 	
