@@ -15,6 +15,38 @@ import pe.edu.upc.dsd.grupoclass.service.ReservaMedicaService;
 @WebService(endpointInterface = "pe.edu.upc.dsd.grupoclass.service.ReservaMedicaService")
 public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 	
+	public ArrayList<String> listaSucursales;
+	public ArrayList<String> listaEspecialidades;
+	public ArrayList<DoctorBean> listaDoctores;	
+	public ArrayList<HorarioDoctorBean> listaHorariosDoctor;
 	
+	public ArrayList<ReservaMedicaBean> listaReservasMedicas = new ArrayList();
+	
+	public ReservaMedicaServiceImpl(){	
+		listaSucursales = DataClass.listarSucursales();
+		listaEspecialidades = DataClass.listarEspecialidades();
+		listaDoctores = DataClass.listarDoctores();
+		listaHorariosDoctor = DataClass.listarHorariosDoctor();
+	}
+	
+	public boolean registrarReservaMedica(ReservaMedicaBean reservaMedicaBean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean verificarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean actualizarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ReservaMedicaBean obtenerReservaPaciente(String dni) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
