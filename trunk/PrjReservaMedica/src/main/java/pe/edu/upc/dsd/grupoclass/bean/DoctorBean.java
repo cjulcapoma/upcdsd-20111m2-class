@@ -6,7 +6,14 @@ public class DoctorBean {
 	private String noDoctor;
 	private String noSucursal;
 	private String noEspecialidad;
+	private String deHorario;
 	
+	public String getDeHorario() {
+		return deHorario;
+	}
+	public void setDeHorario(String deHorario) {
+		this.deHorario = deHorario;
+	}
 	public int getIdDoctor() {
 		return idDoctor;
 	}
