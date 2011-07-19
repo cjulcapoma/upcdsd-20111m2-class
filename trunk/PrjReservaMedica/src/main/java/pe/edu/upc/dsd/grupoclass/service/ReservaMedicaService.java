@@ -14,13 +14,11 @@ import pe.edu.upc.dsd.grupoclass.bean.ReservaMedicaBean;
 public interface ReservaMedicaService {
 
 	public boolean registrarReservaMedica(ReservaMedicaBean reservaMedicaBean);
-
 	public boolean verificarDisponibilidadDoctor(
 			@WebParam(name = "idDoctor") int idDoctor,
 			@WebParam(name = "fechaHora") Date fechaHora);
-
 	public boolean actualizarDisponibilidadDoctor(int idDoctor, Date fechaHora);
-
-	public ReservaMedicaBean obtenerReservaPaciente(String dni);
+	public ReservaMedicaBean obtenerReservaPaciente(String dni);	
+	public boolean actualizarReservaAtendida(int idReserva);
 
 }
