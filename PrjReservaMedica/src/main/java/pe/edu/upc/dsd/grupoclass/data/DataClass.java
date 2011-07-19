@@ -36,6 +36,7 @@ public class DataClass {
 		doctor1.setNoDoctor("Rafael Juan");
 		doctor1.setNoEspecialidad("Medicina General");
 		doctor1.setNoSucursal("Sucursal San Borja");
+		doctor1.setDeHorario("Lunes y Miercoles de 10:00-12:00");
 		
 		DoctorBean doctor2 = new DoctorBean();
 		
@@ -43,6 +44,7 @@ public class DataClass {
 		doctor2.setNoDoctor("Juan Luis");
 		doctor2.setNoEspecialidad("Oftamología");
 		doctor2.setNoSucursal("Sucursal San Borja");
+		doctor2.setDeHorario("Martes y Jueves de 10:00-12:00");
 		listaDoctores.add(doctor2);
 
 		DoctorBean doctor3 = new DoctorBean();
@@ -51,6 +53,7 @@ public class DataClass {
 		doctor3.setNoDoctor("Juan Carlos");
 		doctor3.setNoEspecialidad("Traumatología");
 		doctor3.setNoSucursal("Sucursal San Borja");
+		doctor3.setDeHorario("Viernes de 14:00-16:00");
 		listaDoctores.add(doctor3);
 
 		return listaDoctores;
