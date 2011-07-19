@@ -72,4 +72,10 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 		return null;
 	}
 
+	@Override
+	public boolean actualizarReservaAtendida(int idReserva) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
