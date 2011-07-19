@@ -20,9 +20,9 @@ public class ConsultaMedicaServiceTest {
 	private ConsultaMedicaService consultaMedicaService;
 	
 	@Test
-	public void registrarTratamientoTest(){
+	public void registrarConsultaMedicaTest(){
 		ConsultaMedicaBean objConsultaMedicaBean = new ConsultaMedicaBean();
-		boolean resultado = consultaMedicaService.registrarTratamiento(objConsultaMedicaBean);
+		boolean resultado = consultaMedicaService.registrarConsultaMedica(objConsultaMedicaBean);
 		Assert.assertTrue(resultado);
 	}
 
