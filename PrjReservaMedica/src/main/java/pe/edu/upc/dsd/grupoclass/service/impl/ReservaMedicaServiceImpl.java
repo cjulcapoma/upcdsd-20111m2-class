@@ -39,7 +39,8 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 	public boolean verificarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
 		boolean resultado = false;
 		for(HorarioDoctorBean horarioDoctor : listaHorariosDoctor){
-			if(horarioDoctor.getFechaHora().equals(fechaHora) &&
+			if(horarioDoctor.getIdDoctor()==idDoctor && 
+					horarioDoctor.getFechaHora().equals(fechaHora) &&
 					horarioDoctor.isIndReserva()){
 				resultado = true;
 				break;
@@ -49,7 +50,6 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 	}
 
 	public boolean actualizarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
-		// TODO Auto-generated method stub
 		for (ReservaMedicaBean reserva : listaReservasMedicas) {
 			if (reserva.getDoctor().getIdDoctor()== idDoctor
 					&& reserva.getFechaHoraReserva().equals(fechaHora)) {
@@ -67,7 +67,12 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 
 	@Override
 	public boolean actualizarReservaAtendida(int idReserva) {
-		// TODO Auto-generated method stub
+		for (ReservaMedicaBean reserva : listaReservasMedicas) {
+			if (reserva.getIdReservaMedica()==idReserva) {
+				reserva.setIndReserva(false);
+				return true;
+			}
+		}
 		return false;
 	}
 
