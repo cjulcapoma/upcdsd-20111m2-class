@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pe.edu.upc.dsd.grupoclass.service.ReservaMedicaService;
 
 
-@ContextConfiguration("/applicationContext-test.xml")
+@ContextConfiguration("/applicationContext-testReservas.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ActualizarReservaAtendidaTest {
 	@Autowired

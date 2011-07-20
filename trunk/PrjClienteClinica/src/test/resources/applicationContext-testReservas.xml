@@ -3,8 +3,8 @@
         xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                                                 http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	<jaxws:client id="reservaMedicaId"
+	serviceClass="pe.edu.upc.dsd.grupoclass.service.impl.ReservaMedicaServiceImpl" 
+	  address="http://localhost:8080/PrjReservaMedica/ReservaMedica" />
 
-        <jaxws:client id="consultaMedicaId"
-                serviceClass="pe.edu.upc.dsd.grupoclass.service.ConsultaMedicaService"
-                address="http://localhost:8080/PrjConsultaMedica/ConsultaMedica" />
 </beans>
