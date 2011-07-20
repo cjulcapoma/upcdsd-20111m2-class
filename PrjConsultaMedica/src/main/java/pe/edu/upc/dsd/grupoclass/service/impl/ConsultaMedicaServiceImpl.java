@@ -18,7 +18,7 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 	public ArrayList<String[]> listaMedicamentos;
 	public ArrayList<String[]> listaExamenesMedicos;
 
-	public ArrayList<ConsultaMedicaBean> listaConsultasMedicas = new ArrayList();
+	public ArrayList<ConsultaMedicaBean> listaConsultasMedicas = new ArrayList<ConsultaMedicaBean>();
 
 	public ConsultaMedicaServiceImpl(){
 		listaMedicamentos = DataClass.listarMedicamentos();
@@ -87,20 +87,28 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		
 		for(int i=0; i<listaConsultasMedicas.size(); i++){
 			if(listaConsultasMedicas.get(i).getIdConsultaMedica()==idConsulta){	
-				examenesConsulta = listaConsultasMedicas.get(i).getListaExamenes();
-				
-				resultado = true;
+				examenesConsulta = listaConsultasMedicas.get(i).getListaExamenes();	
+				for(int j=0; j<examenesConsulta.size(); j++){
+					if(examenesConsulta.get(j).getIdExamenMedico()==examenConsultaBean.getIdExamenMedico()){
+						examenesConsulta.set(j, examenConsultaBean);
+						resultado = true;
+					}
+				}				
 				break;
 			}
-		}
-		
+		}		
 		return resultado;
 	}
 
 	public List<ConsultaMedicaBean> obtenerHistorialConsultasPaciente(
 			String dniPaciente) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ConsultaMedicaBean> historialConsultas = new ArrayList<ConsultaMedicaBean>();
+		for(int i=0; i<listaConsultasMedicas.size(); i++){
+			if(listaConsultasMedicas.get(i).getDniPaciente().equals(dniPaciente)){
+				historialConsultas.add(listaConsultasMedicas.get(i));
+			}
+		}
+		return historialConsultas;
 	}
 
 
