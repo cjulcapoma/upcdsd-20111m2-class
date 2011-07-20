@@ -61,7 +61,14 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 	}
 
 	public ReservaMedicaBean obtenerReservaPaciente(String dni) {
-		// TODO Auto-generated method stub
+// TODO Auto-generated method stub
+		
+		for (ReservaMedicaBean reserva : listaReservasMedicas) {
+			if (reserva.getDniPaciente() == dni	) {
+				return reserva;
+			}
+		}	
+		
 		return null;
 	}
 
