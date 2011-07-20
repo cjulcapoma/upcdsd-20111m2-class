@@ -1,7 +1,6 @@
 package pe.edu.upc.dsd.grupoclass.PrjClienteClinica;
 
-import java.util.List;
-
+import java.util.ArrayList;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -23,10 +22,14 @@ public class ConsultaMedicaServiceTest {
 	@Autowired
 	private ConsultaMedicaService consultaMedicaService;
 	
+		private int numCons = 1;
+		
+		public ArrayList<MedicamentoRecetaBean> listaMedicamentos = new ArrayList<MedicamentoRecetaBean>();
+		public ArrayList<ExamenConsultaBean> listaExamenes = new ArrayList<ExamenConsultaBean>();
+		
+	/**/
 	
-	private int numCons = 1;
-	
-	
+		// Este test cubre la regla de negocio RN7
 	@Test
 	public void registrarConsultaMedicaTest(){
 		
@@ -39,10 +42,31 @@ public class ConsultaMedicaServiceTest {
 		//Buscar la consulta que se acaba de crear
 		Assert.assertEquals(objConsultaMedicaBean.getIdConsultaMedica(), consultaMedicaService.obtenerConsultaMedica(numCons).getIdConsultaMedica());
 		
+		//Registra el resultado de la consulta con sus examenes y medicamentos
+		ConsultaMedicaBean objConsultaMedicaBeanResult = new ConsultaMedicaBean();
+		ExamenConsultaBean examen = new ExamenConsultaBean();
+		//Agregamos el examen complementario
+		examen.setIdExamenMedico(2);
+		examen.setCoExamenMedico("coExamenMedico");
+		examen.setCantidad(1);
+		examen.setNoExamen("noExamen");
+		examen.setResultado("resultado");
+		listaExamenes.add(examen);				
+		//Agregamos las medicinas
+		MedicamentoRecetaBean medicina = new MedicamentoRecetaBean(); 
+		medicina.setIdMedicamento(3);
+		medicina.setCantidad(1);
+		medicina.setCoMedicamento("coMedicamento");
+		medicina.setNoMedicamento("noMedicamento");
+		medicina.setPrecio(100) ;
+		objConsultaMedicaBeanResult.setListaExamenes(listaExamenes);
+		objConsultaMedicaBeanResult.setListaMedicamentos(listaMedicamentos);
+		objConsultaMedicaBeanResult.setIdConsultaMedica(numCons);
+		//Grabamos el resultado la consulta
+	    boolean resultado2 = consultaMedicaService.registrarResultadoConsultaMedica(objConsultaMedicaBeanResult);
+		Assert.assertTrue(resultado2);
 		
 	}
 	
-	/*registrarResultadoExamen*/
-
 
 }
