@@ -31,28 +31,21 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 	}
 
 	public boolean registrarReservaMedica(ReservaMedicaBean reservaMedicaBean) {
-		// TODO Auto-generated method stub
-		return false;
+		reservaMedicaBean.setIdReservaMedica(listaReservasMedicas.size()+1);
+		listaReservasMedicas.add(reservaMedicaBean);
+		return true;
 	}
 
 	public boolean verificarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
-		// TODO Auto-generated method stub
-		// Revisar horario Doctor
-		for (HorarioDoctorBean horario : listaHorariosDoctor) {
-			if (horario.getIdDoctor() == idDoctor
-					&& horario.getFechaHora().equals(fechaHora)) {
-				return false;
+		boolean resultado = false;
+		for(HorarioDoctorBean horarioDoctor : listaHorariosDoctor){
+			if(horarioDoctor.getFechaHora().equals(fechaHora) &&
+					horarioDoctor.isIndReserva()){
+				resultado = true;
+				break;
 			}
 		}
-		// Revisar reservas realizadas
-		for (ReservaMedicaBean reserva : listaReservasMedicas) {
-			if (reserva.getDoctor().getIdDoctor() == idDoctor
-					&& reserva.getFechaHoraReserva().equals(fechaHora)
-					&& reserva.isIndReserva()) {
-				return false;
-			}
-		}
-		return true;
+		return resultado;
 	}
 
 	public boolean actualizarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
