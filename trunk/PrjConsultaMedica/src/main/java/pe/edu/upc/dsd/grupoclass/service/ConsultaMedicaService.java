@@ -2,22 +2,24 @@ package pe.edu.upc.dsd.grupoclass.service;
 
 import java.util.List;
 
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
 import pe.edu.upc.dsd.grupoclass.bean.ConsultaMedicaBean;
 import pe.edu.upc.dsd.grupoclass.bean.ExamenConsultaBean;
 import pe.edu.upc.dsd.grupoclass.bean.MedicamentoRecetaBean;
 
-import javax.jws.WebService;
-
 @WebService
 public interface ConsultaMedicaService {
 
-	public boolean registrarConsultaMedica(ConsultaMedicaBean consultaMedicaBean);
-	public ConsultaMedicaBean obtenerConsultaMedica(int idConsultaMedica);
-	public boolean registrarResultadoConsultaMedica(ConsultaMedicaBean consultaMedicaBean);
+	public boolean registrarConsultaMedica(@WebParam(name="consultaMedicaBean") ConsultaMedicaBean consultaMedicaBean);
+	public ConsultaMedicaBean obtenerConsultaMedica(@WebParam(name="idConsultaMedica") int idConsultaMedica);
+	public boolean registrarResultadoConsultaMedica(@WebParam(name="consultaMedicaBean") ConsultaMedicaBean consultaMedicaBean);
 	
-	public List<MedicamentoRecetaBean> obtenerRecetaMedicaPorConsulta(int idConsulta);
-	public List<ExamenConsultaBean> obtenerExamenesPorConsulta(int idConsulta);
-	public boolean registrarResultadoExamen(int idConsulta, ExamenConsultaBean examenConsultaBean);
+	public List<MedicamentoRecetaBean> obtenerRecetaMedicaPorConsulta(@WebParam(name="idConsultaMedica") int idConsultaMedica);
+	public List<ExamenConsultaBean> obtenerExamenesPorConsulta(@WebParam(name="idConsultaMedica") int idConsultaMedica);
+	public boolean registrarResultadoExamen(@WebParam(name="idConsultaMedica") int idConsultaMedica, 
+			@WebParam(name="examenConsultaBean") ExamenConsultaBean examenConsultaBean);
 		
-	public List<ConsultaMedicaBean> obtenerHistorialConsultasPaciente(String dniPaciente);	
+	public List<ConsultaMedicaBean> obtenerHistorialConsultasPaciente(@WebParam(name="dniPaciente") String dniPaciente);	
 }

@@ -25,7 +25,8 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		listaExamenesMedicos = DataClass.listaExamenesMedicos();
 	}
 	
-	public boolean registrarConsultaMedica(ConsultaMedicaBean consultaMedicaBean) {		
+	public boolean registrarConsultaMedica(ConsultaMedicaBean consultaMedicaBean) {	
+		consultaMedicaBean.setIdConsultaMedica(listaConsultasMedicas.size()+1);
 		listaConsultasMedicas.add(consultaMedicaBean);						
 		return true;
 	}
@@ -57,11 +58,11 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 	}
 
 	public List<MedicamentoRecetaBean> obtenerRecetaMedicaPorConsulta(
-			int idConsulta) {
+			int idConsultaMedica) {
 		List<MedicamentoRecetaBean> medicamentosConsulta = null;
 		
 		for(int i=0; i<listaConsultasMedicas.size(); i++){
-			if(listaConsultasMedicas.get(i).getIdConsultaMedica()==idConsulta){	
+			if(listaConsultasMedicas.get(i).getIdConsultaMedica()==idConsultaMedica){	
 				medicamentosConsulta = listaConsultasMedicas.get(i).getListaMedicamentos();
 				break;
 			}
@@ -69,11 +70,11 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		return medicamentosConsulta;
 	}
 
-	public List<ExamenConsultaBean> obtenerExamenesPorConsulta(int idConsulta) {
+	public List<ExamenConsultaBean> obtenerExamenesPorConsulta(int idConsultaMedica) {
 		List<ExamenConsultaBean> examenesConsulta = null;
 		
 		for(int i=0; i<listaConsultasMedicas.size(); i++){
-			if(listaConsultasMedicas.get(i).getIdConsultaMedica()==idConsulta){	
+			if(listaConsultasMedicas.get(i).getIdConsultaMedica()==idConsultaMedica){	
 				examenesConsulta = listaConsultasMedicas.get(i).getListaExamenes();
 				break;
 			}
