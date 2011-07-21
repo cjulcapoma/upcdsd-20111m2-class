@@ -67,7 +67,8 @@ public class DataClass {
 		cal.set(2011,07,17,8,0,0);
 		fecha1 = cal.getTime();
 		hdoctor1_h1.setIdDoctor(1);
-		hdoctor1_h1.setFechaHora(fecha1);		
+		hdoctor1_h1.setFechaHora(fecha1);
+		hdoctor1_h1.setIndReserva(false);
 		listaHorariosDoctor.add(hdoctor1_h1);
 		
 		return listaHorariosDoctor;
