@@ -24,6 +24,7 @@ public class RegistrarReservaMedicaTest {
 	private ReservaMedicaService reservaMedicaService;
 	private int numConst;
 	
+	// Este test cubre las reglas de negocio RN1 y RN3
 	@Test
 	public void registrarReservaMedicaTest(){
 		
@@ -56,7 +57,7 @@ public class RegistrarReservaMedicaTest {
 		//El doctor se encuentra disponible en el horario seleccionado
 		Assert.assertTrue(resultado);
 	}
-	
+	// Este test cubre las reglas de negocio RN1 y RN3
 	@Test
 	public void validarReservaMedicaTest(){
 		
