@@ -7,7 +7,6 @@ import pe.edu.upc.dsd.grupoclass.bean.ConsultaMedicaBean;
 import pe.edu.upc.dsd.grupoclass.bean.DoctorBean;
 import pe.edu.upc.dsd.grupoclass.bean.ExamenConsultaBean;
 import pe.edu.upc.dsd.grupoclass.bean.MedicamentoRecetaBean;
-import pe.edu.upc.dsd.grupoclass.data.DataClass;
 import pe.edu.upc.dsd.grupoclass.service.ConsultaMedicaService;
 
 import javax.jws.WebService;
@@ -15,15 +14,7 @@ import javax.jws.WebService;
 @WebService(endpointInterface = "pe.edu.upc.dsd.grupoclass.service.ConsultaMedicaService")
 public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 	
-	public ArrayList<String[]> listaMedicamentos;
-	public ArrayList<String[]> listaExamenesMedicos;
-
 	public ArrayList<ConsultaMedicaBean> listaConsultasMedicas = new ArrayList<ConsultaMedicaBean>();
-
-	public ConsultaMedicaServiceImpl(){
-		listaMedicamentos = DataClass.listarMedicamentos();
-		listaExamenesMedicos = DataClass.listaExamenesMedicos();
-	}
 	
 	public boolean registrarConsultaMedica(ConsultaMedicaBean consultaMedicaBean) {	
 		consultaMedicaBean.setIdConsultaMedica(listaConsultasMedicas.size()+1);
