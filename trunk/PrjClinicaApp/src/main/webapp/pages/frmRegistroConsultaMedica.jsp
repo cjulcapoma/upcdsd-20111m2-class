@@ -49,19 +49,19 @@
                 	<h4>Datos Generales</h4>
                   <table width="100%">
                   	<tr>
-                  		<td width ="80px">Nro. Consulta</td>
-                  		<td width ="125px"><input type="text"></td> 
+                  		<td width ="80px">Nro. Consulta:</td>
+                  		<td width ="125px"><input type="text" size="15"></td> 
 						<td width ="30px">&nbsp;</td>  
-                  		<td width><input type="button" value="Consultar"></td>     
+                  		<td width><input type="button" value=" Consultar "></td>     
                   		<td width ="60px">&nbsp;</td>             		
                   	</tr>
                   	<tr>
-                  		<td width ="80px" height="30px">Paciente</td>
+                  		<td width ="80px" height="30px">Paciente:</td>
                   		<td width ="125px">[Nombre Paciente]</td> 
 						<td width ="30px">&nbsp;</td>  
-                  		<td width ="70px">D.N.I</td>
-                  		<td width ="90px">[Nro. D.N.I.]</td>    
-                  		<td><input type="button" value="Historial Consultas"></td>               		
+                  		<td width ="70px">D.N.I:</td>
+                  		<td width ="95px">[Nro. D.N.I.]</td>    
+                  		<td><input type="button" value=" Historial Consultas "></td>               		
                   	</tr>
                   </table>                  	
                 </div>
@@ -71,16 +71,21 @@
             <!-- .box -->            	
             	<div class="box">              	
                 <div class="inner">
-                	<h4>Resultado de Consulta Medica</h4>
+                  <h4>Resultado de Consulta Medica</h4>
                   <table width="100%">
                   	<tr>
-                  		<td width ="80px">Medicamento:</td>
-                  		<td width ="125px"><input type="text"></td> 
-						<td width ="30px">&nbsp;</td>  
-                  		<td width ="80px">Cant.</td>     
-                  		<td width ="60px">&nbsp;</td> 
+                  		<td width ="100%">Diagnostico</td>             		
                   	</tr>
-                  </table>                  	
+                  	<tr>
+                  		<td><textarea cols="100" rows="3"></textarea></td>          		
+                  	</tr>
+                  	<tr>
+                  		<td width ="100%">Tratamiento</td>             		
+                  	</tr>
+                  	<tr>
+                  		<td><textarea cols="100" rows="3"></textarea></td>          		
+                  	</tr>
+                  </table>                   	
                 </div>
               </div>
             <!-- /.box -->
@@ -91,24 +96,95 @@
                 	<h4>Receta Medica</h4>
                   <table width="100%">
                   	<tr>
-                  		<td width ="100%">Diagnostico</td>             		
+                  		<td width ="80px">Codigo Med.:</td>
+                  		<td width ="80px"><input type="text" size="12"></td> 
+						<td width ="20px">&nbsp;</td>  
+                  		<td width ="60px">Cantidad:</td>     
+                  		<td width ="60px"><input type="text" size="8"></td>
+                  		<td width ="20px">&nbsp;</td>  
+                  		<td ><input type="button" value=" Agregar "></td>  
                   	</tr>
                   	<tr>
-                  		<td><textarea cols="107" rows="3"></textarea></td>          		
+                  		<td width ="80px" height="20px">Medicamento:</td>
+                  		<td colspan="6">[Nombre Medicamento]</td>
                   	</tr>
                   	<tr>
-                  		<td width ="100%">Tratamiento</td>             		
+                  		<td colspan="8">
+                  			<table border="1">
+                  				<tr>
+                  					<th width ="70px">Codigo</td>
+                  					<th width ="250px">Nombre Medicamento</td>
+                  					<th width ="70px">Cantidad</td>
+                  					<th width ="70px">Eliminar</td>
+                  				</tr>                  				
+                  				<tr>
+                  					<td>&nbsp;</td>
+                  					<td>&nbsp;</td>
+                  					<td>&nbsp;</td>
+                  					<td align="center"><a href="">Eliminar</a></td>
+                  				</tr>
+                  			</table>
+						</td>
                   	</tr>
-                  	<tr>
-                  		<td><textarea cols="107" rows="3"></textarea></td>          		
-                  	</tr>
-                  </table>                  	
+                  </table>                 	
                 </div>
               </div>
             <!-- /.box -->
             
-            
-            
+            <!-- .box -->            	
+            	<div class="box">              	
+                <div class="inner">
+                	<h4>Examenes Medicos</h4>
+                  <table width="100%">
+                  	<tr>
+                  		<td width ="80px" >Codigo Exam:</td>
+                  		<td width ="80px"><input type="text" size="12"></td> 
+						<td width ="20px">&nbsp;</td>  
+                  		<td width ="60px">Cantidad:</td>     
+                  		<td width ="60px"><input type="text" size="8"></td>
+                  		<td width ="20px">&nbsp;</td>  
+                  		<td ><input type="button" value=" Agregar "></td>  
+                  	</tr>
+                  	<tr>
+                  		<td width ="80px" height="20px">Examen:</td>
+                  		<td colspan="6">[Nombre del Examen]</td>
+                  	</tr>
+                  	<tr>
+                  		<td colspan="8">
+                  			<table border="1">
+                  				<tr>
+                  					<th width ="70px">Codigo</td>
+                  					<th width ="250px">Nombre Examen</td>
+                  					<th width ="70px">Cantidad</td>
+                  					<th width ="70px">Eliminar</td>
+                  				</tr>                  				
+                  				<tr>
+                  					<td>&nbsp;</td>
+                  					<td>&nbsp;</td>
+                  					<td>&nbsp;</td>
+                  					<td align="center"><a href="">Eliminar</a></td>
+                  				</tr>
+                  			</table>
+						</td>
+                  	</tr>
+                  </table>                 	
+                </div>
+              </div>
+            <!-- /.box -->            
+
+            <!-- .box -->            	
+            	<div class="box">              	
+                <div class="inner">
+                  <table width="100%">
+                  	<tr>
+                  		<td align="center"><input type="button" value=" Registrar "></td>             		
+                  		<td align="center"><input type="button" value=" Regresar Inicio "></td>
+                  		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  	</tr>
+                  </table>                   	
+                </div>
+              </div>
+            <!-- /.box -->            
             
             
             </div>
