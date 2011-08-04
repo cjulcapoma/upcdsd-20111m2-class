@@ -20,11 +20,12 @@
       </div>
     	<!-- /.logo -->
       <!-- .nav -->
-      <ul class="nav">
-      	<li><a href="pages/frmRegistroReservaMedica.jsp" >Reservas</a></li>
-        <li><a href="pages/frmVentaMedicamentos.jsp" >Ventas</a></li>
-        <li><a href="pages/frmRegistroConsultaMedica.jsp" >Consulta Clínica</a></li>
-        <li><a href="index.jsp">Examen Médico</a></li>        
+      <ul class="nav">      	
+        <li><a href="pages/frmRegistroReservaMedica.jsp"  >Reservas</a></li>
+      	<li><a href="pages/frmRegistroPagoConsulta.jsp">Pago Consulta</a></li>        
+        <li><a href="pages/frmRegistroConsultaMedica.jsp">Atención Consulta</a></li>
+        <li><a href="pages/frmVentaMedicamentos.jsp" class="current">Medicamentos</a></li>
+        <li><a href="pages/frmRegistroExamenMedico.jsp" >Examen Médico</a></li>                
       </ul>
       <!-- /.nav -->      
     </div>
