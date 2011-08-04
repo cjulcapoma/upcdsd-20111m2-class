@@ -18,15 +18,15 @@
     <div class="container">
     	<!-- .logo -->
     	<div class="logo">
-      	<a href="index.html"><img src="../images/logo.jpg" alt="" /></a>
+      	<a href="../index.jsp"><img src="../images/logo.jpg" alt="" /></a>
       </div>
     	<!-- /.logo -->
       <!-- .nav -->
       <ul class="nav">
-      	<li><a href="../index.html" class="current" >Reservas</a></li>
-        <li><a href="../index.html" >Ventas</a></li>
-        <li><a href="../index.html">Historia Clínica</a></li>
-        <li><a href="../index.html">Examen Médico</a></li>        
+      	<li><a href="frmRegistroReservaMedica.jsp" >Reservas</a></li>
+        <li><a href="../index.jsp" >Ventas</a></li>
+        <li><a href="frmRegistroConsultaMedica.jsp" class="current" >Historia Clínica</a></li>
+        <li><a href="frmRegistroConsultaMedica.jsp">Examen Médico</a></li>        
       </ul>
       <!-- /.nav -->      
     </div>
