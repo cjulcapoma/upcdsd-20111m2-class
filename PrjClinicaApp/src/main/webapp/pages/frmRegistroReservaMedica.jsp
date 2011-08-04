@@ -78,7 +78,7 @@
                   	</tr>
                   	<tr>
                   		<td colspan="8">
-                  			<table border="1">
+                  			<table border="1" cellspacing="0" cellpadding="1">
                   				<tr>                  					
                   					<th width ="300px">Nombre Doctor</td>
                   					<th width ="200px">Horario</td>

@@ -71,7 +71,7 @@
 									<h4>Resultado de Consulta Medica</h4>
 									<tr>
 										<td colspan="8">
-											<table border="1">
+											<table border="1"  cellspacing="0" cellpadding="1">
 												<tr>
 													<th width="70px">Codigo
 													</td>
