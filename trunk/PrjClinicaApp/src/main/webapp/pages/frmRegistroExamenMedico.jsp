@@ -57,7 +57,7 @@
                   		<td width ="80px"><input type="text" size="12"></td> 
 						<td width ="20px">&nbsp;</td>  
                   		<td width ="20px">&nbsp;</td>  
-                  		<td ><input type="button" value="Consultar"></td>  
+                  		<td ><input class="button" type="button" value="Consultar"></td>  
                   	</tr>
                   	<tr>
                   		<td colspan="8">
@@ -101,8 +101,8 @@
                 <div class="inner">
                   <table width="100%">
                   	<tr>
-                  		<td align="center"><input type="button" value=" Registrar "></td>             		
-                  		<td align="center"><input type="button" value=" Cerrar "></td>
+                  		<td align="center"><input type="button" class="button" value=" Registrar "></td>             		
+                  		<td align="center"><input type="button" class="button" value=" Cerrar "></td>
                   		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   	</tr>
                   </table>                   	
