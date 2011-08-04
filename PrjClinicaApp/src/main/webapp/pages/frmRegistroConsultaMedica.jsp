@@ -24,9 +24,9 @@
       <!-- .nav -->
       <ul class="nav">
       	<li><a href="frmRegistroReservaMedica.jsp" >Reservas</a></li>
-        <li><a href="../index.jsp" >Ventas</a></li>
-        <li><a href="frmRegistroConsultaMedica.jsp" class="current" >Historia Clínica</a></li>
-        <li><a href="frmRegistroConsultaMedica.jsp">Examen Médico</a></li>        
+        <li><a href="frmVentaMedicamentos.jsp" >Ventas</a></li>
+        <li><a href="frmRegistroConsultaMedica.jsp" class="current" >Consulta Clínica</a></li>
+        <li><a href="frmRegistroExamenMedico.jsp">Examen Médico</a></li>        
       </ul>
       <!-- /.nav -->      
     </div>
