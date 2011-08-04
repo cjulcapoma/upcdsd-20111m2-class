@@ -111,7 +111,7 @@
                   	</tr>
                   	<tr>
                   		<td colspan="8">
-                  			<table border="1">
+                  			<table border="1" cellspacing="0" cellpadding="1">
                   				<tr>
                   					<th width ="70px">Codigo</td>
                   					<th width ="250px">Nombre Medicamento</td>
@@ -152,7 +152,7 @@
                   	</tr>
                   	<tr>
                   		<td colspan="8">
-                  			<table border="1">
+                  			<table border="1" cellspacing="0" cellpadding="1">
                   				<tr>
                   					<th width ="70px">Codigo</td>
                   					<th width ="250px">Nombre Examen</td>
