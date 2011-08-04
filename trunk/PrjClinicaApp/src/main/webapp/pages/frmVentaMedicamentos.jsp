@@ -54,7 +54,7 @@
 											<td width="125px"><input type="text" size="15">
 											</td>
 											<td width="30px">&nbsp;</td>
-											<td width><input type="button" value=" Consultar ">
+											<td width><input type="button" class="button" value=" Consultar ">
 											</td>
 											<td width="60px">&nbsp;</td>
 										</tr>
@@ -131,9 +131,8 @@
 
 								<table width="100%">
 									<tr>
-										<td align="center"><input type="button"
-											value=" Registrar "></td>
-										<td align="center"><input type="button" value=" Cerrar ">
+										<td align="center"><input type="button" class="button" value=" Registrar "></td>
+										<td align="center"><input type="button" class="button" value=" Cerrar ">
 										</td>
 										<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
 									</tr>
