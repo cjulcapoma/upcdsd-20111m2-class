@@ -23,10 +23,11 @@
 			<!-- /.logo -->
 			<!-- .nav -->
 			<ul class="nav">
-				<li><a href="frmRegistroReservaMedica.jsp">Reservas</a></li>
-				<li><a href="frmVentaMedicamentos.jsp" class="current">Ventas</a></li>
-				<li><a href="frmRegistroConsultaMedica.jsp">Consulta Clínica</a></li>
-				<li><a href="frmRegistroExamenMedico.jsp">Examen Médico</a></li>
+				<li><a href="frmRegistroReservaMedica.jsp"  >Reservas</a></li>
+		      	<li><a href="frmRegistroPagoConsulta.jsp">Pago Consulta</a></li>        
+		        <li><a href="frmRegistroConsultaMedica.jsp">Atención Consulta</a></li>
+		        <li><a href="frmVentaMedicamentos.jsp" class="current">Medicamentos</a></li>
+		        <li><a href="frmRegistroExamenMedico.jsp" >Examen Médico</a></li>
 			</ul>
 			<!-- /.nav -->
 		</div>
@@ -47,7 +48,7 @@
 							</div>
 							<div class="box">
 								<div class="inner">
-									<h4>Datos Recerva Medica</h4>
+									<h4>Datos Reserva Mèdica</h4>
 									<table width="100%">
 										<tr>
 											<td width="80px">Nro. Consulta:</td>
