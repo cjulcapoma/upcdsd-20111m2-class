@@ -52,16 +52,16 @@
                   		<td width ="80px">Nro. Consulta:</td>
                   		<td width ="125px"><input type="text" size="15"></td> 
 						<td width ="30px">&nbsp;</td>  
-                  		<td width><input type="button" value=" Consultar "></td>     
+                  		<td><input type="button" class="button" value=" Consultar "></td>     
                   		<td width ="60px">&nbsp;</td>             		
                   	</tr>
                   	<tr>
                   		<td width ="80px" height="30px">Paciente:</td>
                   		<td width ="125px">[Nombre Paciente]</td> 
 						<td width ="30px">&nbsp;</td>  
-                  		<td width ="70px">D.N.I:</td>
-                  		<td width ="95px">[Nro. D.N.I.]</td>    
-                  		<td><input type="button" value=" Historial Consultas "></td>               		
+                  		<td width ="15px">D.N.I:</td>
+                  		<td width ="30px">[Nro. D.N.I.]</td>    
+                  		<td><input type="button" class="button" value=" Historial "></td>               		
                   	</tr>
                   </table>                  	
                 </div>
@@ -102,7 +102,7 @@
                   		<td width ="60px">Cantidad:</td>     
                   		<td width ="60px"><input type="text" size="8"></td>
                   		<td width ="20px">&nbsp;</td>  
-                  		<td ><input type="button" value=" Agregar "></td>  
+                  		<td ><input type="button" class="button" value=" Agregar "></td>  
                   	</tr>
                   	<tr>
                   		<td width ="80px" height="20px">Medicamento:</td>
@@ -143,7 +143,7 @@
                   		<td width ="60px">Cantidad:</td>     
                   		<td width ="60px"><input type="text" size="8"></td>
                   		<td width ="20px">&nbsp;</td>  
-                  		<td ><input type="button" value=" Agregar "></td>  
+                  		<td ><input type="button" class="button" value=" Agregar "></td>  
                   	</tr>
                   	<tr>
                   		<td width ="80px" height="20px">Examen:</td>
@@ -177,8 +177,8 @@
                 <div class="inner">
                   <table width="100%">
                   	<tr>
-                  		<td align="center"><input type="button" value=" Registrar "></td>             		
-                  		<td align="center"><input type="button" value=" Regresar Inicio "></td>
+                  		<td align="center"><input type="button" class="button" value=" Registrar "></td>             		
+                  		<td align="center"><input type="button" class="button" value=" Regresar Inicio "></td>
                   		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   	</tr>
                   </table>                   	
