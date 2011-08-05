@@ -53,7 +53,7 @@
                 <div class="inner">
                 	<h4>Datos de Consulta</h4>
                   <table width="100%">
-                  	<tr>
+                  	<tr height="20px">
                   		<td width ="80px" >N° Consulta:</td>
                   		<td width ="80px"><input type="text" size="12"></td> 
 						<td width ="20px">&nbsp;</td>  
