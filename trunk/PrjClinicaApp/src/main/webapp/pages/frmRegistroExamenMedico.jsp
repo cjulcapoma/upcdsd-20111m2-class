@@ -64,16 +64,16 @@
                   		<td colspan="8">
                   			<table border="1" cellspacing="0" cellpadding="1">
                   				<tr>
-                  					<th width ="70px">Codigo</td>
-                  					<th width ="250px">Nombre Examen</td>
-                  					<th width ="70px">Cantidad</td>
-                  					<th width ="70px">Resultado</td>
+                  					<th width ="70px">Codigo</th>
+                  					<th width ="250px">Nombre Examen</th>
+                  					<th width ="70px">Cantidad</th>
+                  					<th width ="70px">Resultado</th>
                   				</tr>                  				
                   				<tr>
                   					<td>&nbsp;</td>
                   					<td>&nbsp;</td>
                   					<td>&nbsp;</td>
-                  					<td align="center"><a href="">Resultado</a></td>
+                  					<td align="center"><a href="#">Resultado</a></td>
                   				</tr>
                   			</table>
 						</td>
