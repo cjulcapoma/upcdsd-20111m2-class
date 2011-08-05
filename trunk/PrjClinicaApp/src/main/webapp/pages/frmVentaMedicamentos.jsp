@@ -69,18 +69,16 @@
 									</table>
 									<br>
 									<h4>Resultado de Consulta Medica</h4>
-									<tr>
-										<td colspan="8">
-											<table border="1"  cellspacing="0" cellpadding="1">
+										<table border="1"  cellspacing="0" cellpadding="1">
 												<tr>
-													<th width="70px">Codigo
-													</td>
-													<th width="250px">Nombre Medicamento
-													</td>
-													<th width="70px">Cantidad
-													</td>
-													<th width="70px">Precio
-													</td>
+													<th width="70px">Codigo</th>
+													
+													<th width="250px">Nombre Medicamento</th>
+													
+													<th width="70px">Cantidad</th>
+													
+													<th width="70px">Precio</th>
+													
 												</tr>
 												<tr>
 													<td>&nbsp;</td>
