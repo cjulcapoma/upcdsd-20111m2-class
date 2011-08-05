@@ -151,7 +151,7 @@
                   <table width="100%">
                   	<tr>
                   		<td align="center"><input class="button" type="button" value=" Registrar "></td>             		
-                  		<td align="center"><input class="button" type="button" value=" Regresar Inicio "></td>                  		
+                  		<td align="center"><input onclick="location.href='../index.jsp'" class="button" type="button" value=" Cerrar "></td>                  		
                   	</tr>
                   </table>                   	
                 </div>

@@ -107,7 +107,7 @@
                   	<tr>
                   		<td width ="80px" height="30px"><input type="button" value="Registrar "></td>
                   		<td width ="125px">&nbsp;</td> 
-						<td width ="30px"><input type="button" value="Cerrar "></td>  
+						<td width ="30px">	<a href="index.html"><input type="button" value="Cerrar "></td> </a> 
                   		<td width ="70px">&nbsp;</td>
                   		<td width ="95px">&nbsp;</td>    
                   		<td>&nbsp;</td>               		
