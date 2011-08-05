@@ -80,14 +80,14 @@
                   		<td colspan="8">
                   			<table border="1" cellspacing="0" cellpadding="1">
                   				<tr>                  					
-                  					<th width ="300px">Nombre Doctor</td>
-                  					<th width ="200px">Horario</td>
-                  					<th width ="70px">Reservar</td>
+                  					<th width ="300px">Nombre Doctor</th>
+                  					<th width ="200px">Horario</th>
+                  					<th width ="70px">Reservar</th>
                   				</tr>                  				
                   				<tr>
                   					<td>&nbsp;</td>
                   					<td>&nbsp;</td>                  					
-                  					<td align="center"><a href="">Reservar</a></td>
+                  					<td align="center"><a href="#">Reservar</a></td>
                   				</tr>
                   			</table>
 						</td>
