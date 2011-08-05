@@ -103,7 +103,7 @@
                   <table width="100%">
                   	<tr>
                   		<td align="center"><input type="button" class="button" value=" Registrar "></td>             		
-                  		<td align="center"><input type="button" class="button" value=" Cerrar "></td>
+                  		<td align="center"><input onclick="location.href='../index.jsp'" type="button" class="button" value=" Cerrar "></td>
                   		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   	</tr>
                   </table>                   	
