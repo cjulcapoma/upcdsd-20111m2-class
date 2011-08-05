@@ -10,6 +10,14 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <link href="../css/layout.css" rel="stylesheet" type="text/css" />
+
+<script language="javascript"> 
+function abrirVentana(url) {
+    window.open(url, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, " + 
+    			"statusbar=no, tittlebar=no, width=900, height=400");
+    }
+</script>
+
 </head>
 <body id="registroConsultaMedica">
 
@@ -48,21 +56,21 @@
             	<div class="box">              	
                 <div class="inner">
                 	<h4>Datos Generales</h4>
-                  <table width="100%">
+                  <table width="100%" border="0">
                   	<tr>
                   		<td width ="80px">Nro. Consulta:</td>
                   		<td width ="125px"><input type="text" size="15"></td> 
 						<td width ="30px">&nbsp;</td>  
-                  		<td><input type="button" class="button" value=" Consultar "></td>     
-                  		<td width ="60px">&nbsp;</td>             		
+                  		<td colspan="3"><input type="button" class="button" value="Consultar"></td>               		
                   	</tr>
                   	<tr>
                   		<td width ="80px" height="30px">Paciente:</td>
                   		<td width ="125px">[Nombre Paciente]</td> 
 						<td width ="30px">&nbsp;</td>  
-                  		<td width ="15px">D.N.I:</td>
-                  		<td width ="30px">[Nro. D.N.I.]</td>    
-                  		<td><input type="button" class="button" value=" Historial "></td>               		
+                  		<td width ="50px">D.N.I:</td>
+                  		<td width ="120px">[Nro. D.N.I.]</td>    
+                  		<td><input type="button" onClick="abrirVentana('poppupHistorialConsultas.jsp')" 
+                  			class="button" value="Historial"></td>               		
                   	</tr>
                   </table>                  	
                 </div>
@@ -103,7 +111,7 @@
                   		<td width ="60px">Cantidad:</td>     
                   		<td width ="60px"><input type="text" size="8"></td>
                   		<td width ="20px">&nbsp;</td>  
-                  		<td ><input type="button" class="button" value=" Agregar "></td>  
+                  		<td ><input type="button" class="button" value="Agregar"></td>  
                   	</tr>
                   	<tr>
                   		<td width ="80px" height="20px">Medicamento:</td>
@@ -122,7 +130,7 @@
                   					<td>&nbsp;</td>
                   					<td>&nbsp;</td>
                   					<td>&nbsp;</td>
-                  					<td align="center"><a href="">Eliminar</a></td>
+                  					<td align="center"><a href="#">Eliminar</a></td>
                   				</tr>
                   			</table>
 						</td>
@@ -144,7 +152,7 @@
                   		<td width ="60px">Cantidad:</td>     
                   		<td width ="60px"><input type="text" size="8"></td>
                   		<td width ="20px">&nbsp;</td>  
-                  		<td ><input type="button" class="button" value=" Agregar "></td>  
+                  		<td ><input type="button" class="button" value="Agregar"></td>  
                   	</tr>
                   	<tr>
                   		<td width ="80px" height="20px">Examen:</td>
@@ -163,7 +171,7 @@
                   					<td>&nbsp;</td>
                   					<td>&nbsp;</td>
                   					<td>&nbsp;</td>
-                  					<td align="center"><a href="">Eliminar</a></td>
+                  					<td align="center"><a href="#">Eliminar</a></td>
                   				</tr>
                   			</table>
 						</td>
@@ -178,8 +186,8 @@
                 <div class="inner">
                   <table width="100%">
                   	<tr>
-                  		<td align="center"><input type="button" class="button" value=" Registrar "></td>             		
-                  		<td align="center"><input onclick="location.href='../index.jsp'" type="button" class="button" value=" Cerrar "></td>
+                  		<td align="center"><input type="button" class="button" value="Registrar"></td>             		
+                  		<td align="center"><input onclick="location.href='../index.jsp'" type="button" class="button" value="Cerrar"></td>
                   		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   	</tr>
                   </table>                   	
