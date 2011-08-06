@@ -24,6 +24,5 @@ public class DataClass {
 		
 		return listaHorariosDoctor;
 	}
-
 	
 }
