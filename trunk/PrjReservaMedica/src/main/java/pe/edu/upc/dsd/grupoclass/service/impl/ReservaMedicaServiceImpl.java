@@ -17,6 +17,7 @@ import pe.edu.upc.dsd.grupoclass.service.ReservaMedicaService;
 public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 
 	public ArrayList<HorarioDoctorBean> listaHorariosDoctor;
+
 	public ArrayList<ReservaMedicaBean> listaReservasMedicas = new ArrayList();
 
 	public ReservaMedicaServiceImpl() {
@@ -24,65 +25,52 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 	}
 
 	public boolean registrarReservaMedica(ReservaMedicaBean reservaMedicaBean) {
-		
-		if (verificarDisponibilidadDoctor(reservaMedicaBean.getDoctor()
-				.getIdDoctor(), reservaMedicaBean.getFechaHoraReserva())) {
-			
-			reservaMedicaBean.setIdReservaMedica(listaReservasMedicas.size() + 1);
-			listaReservasMedicas.add(reservaMedicaBean);
-			
-			actualizarDisponibilidadDoctor(reservaMedicaBean.getDoctor()
-				.getIdDoctor(), reservaMedicaBean.getFechaHoraReserva());
-			
-			return true;
-		}
-		
-		return false;
-
+		reservaMedicaBean.setIdReservaMedica(listaReservasMedicas.size()+1);
+		listaReservasMedicas.add(reservaMedicaBean);
+		return true;
 	}
 
-	public boolean verificarDisponibilidadDoctor(int idDoctor, Date fechaHora) {						
+	public boolean verificarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
 		boolean resultado = false;
-		
-		for (HorarioDoctorBean horarioDoctor : listaHorariosDoctor) {
-			
-			if (horarioDoctor.getIdDoctor() == idDoctor
-					&& horarioDoctor.getFechaHora().toString().equals(fechaHora.toString())) {
-				resultado = horarioDoctor.indReserva;
+		for(HorarioDoctorBean horarioDoctor : listaHorariosDoctor){
+			if(horarioDoctor.getIdDoctor()==idDoctor && 
+					horarioDoctor.getFechaHora().equals(fechaHora) &&
+					horarioDoctor.isIndReserva()){
+				resultado = true;
 				break;
 			}
 		}
-		
 		return resultado;
 	}
 
 	public boolean actualizarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
-		for (HorarioDoctorBean horarioDoctor : listaHorariosDoctor) {
-			if (horarioDoctor.getIdDoctor()==idDoctor && 
-					horarioDoctor.getFechaHora().toString().equals(fechaHora.toString())) {
+		boolean resultado = false;
+		for(HorarioDoctorBean horarioDoctor : listaHorariosDoctor){
+			if(horarioDoctor.getIdDoctor()==idDoctor && 
+					horarioDoctor.getFechaHora().equals(fechaHora) &&
+					horarioDoctor.isIndReserva()){
 				horarioDoctor.setIndReserva(false);
-				return true;
+				resultado=true;
+				break;
 			}
 		}
-		return false;
+		return resultado;
 	}
 
 	public ReservaMedicaBean obtenerReservaPaciente(String dni) {
-		// TODO Auto-generated method stub
-
 		for (ReservaMedicaBean reserva : listaReservasMedicas) {
-			if (reserva.getDniPaciente() == dni) {
+			if (reserva.getDniPaciente().equals(dni) 
+					&& reserva.isIndReserva()) {
 				return reserva;
 			}
 		}
-
 		return null;
 	}
 
 	@Override
 	public boolean actualizarReservaAtendida(int idReserva) {
 		for (ReservaMedicaBean reserva : listaReservasMedicas) {
-			if (reserva.getIdReservaMedica() == idReserva) {
+			if (reserva.getIdReservaMedica()==idReserva) {
 				reserva.setIndReserva(false);
 				return true;
 			}
