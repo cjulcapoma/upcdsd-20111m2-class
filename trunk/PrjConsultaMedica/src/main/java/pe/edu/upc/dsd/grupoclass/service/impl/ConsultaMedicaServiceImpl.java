@@ -23,15 +23,15 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 	}
 
 	public ConsultaMedicaBean obtenerConsultaMedica(int idConsultaMedica) {		
-		ConsultaMedicaBean objConsultaMedicaBean = null;
+		ConsultaMedicaBean  objConsultaMedica = null;
 		
-		for(int i=0; i<listaConsultasMedicas.size(); i++){
-			objConsultaMedicaBean = listaConsultasMedicas.get(i);
+		for(ConsultaMedicaBean objConsultaMedicaBean : listaConsultasMedicas){
 			if(objConsultaMedicaBean.getIdConsultaMedica()==idConsultaMedica){
+				objConsultaMedica = objConsultaMedicaBean;
 				break;
 			}
 		}		
-		return objConsultaMedicaBean;
+		return objConsultaMedica;
 	}
 
 	public boolean registrarResultadoConsultaMedica(
