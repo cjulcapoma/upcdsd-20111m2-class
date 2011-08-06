@@ -10,6 +10,19 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <link href="../css/layout.css" rel="stylesheet" type="text/css" />
+
+<!-- Calendario JQuery-UI -->
+<link type="text/css" href="../css/jquery-ui-1.8.14.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.14.custom.min.js"></script>
+<script type="text/javascript" src="../js/i18n/jquery.ui.datepicker-es.js"></script>
+<script >
+$(function() {
+	$( "#datepicker" ).datepicker({dateFormat: 'dd/mm/yy'});
+	
+});
+</script>
+<!-- Calendario JQuery-UI -->
 </head>
 <body id="registroReservaMedica">
 
@@ -29,7 +42,7 @@
         <li><a href="frmVentaMedicamentos.jsp" >Medicamentos</a></li>
         <li><a href="frmRegistroExamenMedico.jsp" >Examen Médico</a></li>        
       </ul>
-      <!-- /.nav -->      
+      <!-- /.nav -->
     </div>
   </div>
 
@@ -50,7 +63,7 @@
                 	<h4>Datos Generales</h4>
                   <table width="100%">
                   	<tr>
-                  		<td width ="80px">Sucursal</td>
+                  		<td width ="80px">Sucursal:</td>
                   		<td width ="125px">                  		
                   		<select>
                   		<option>Sucursal San Borja</option> 
@@ -64,15 +77,22 @@
                   		<td width ="60px">&nbsp;</td>             		
                   	</tr>
                   	<tr>
-                  		<td width ="80px">Especialidad</td>
+                  		<td width ="80px">Especialidad:</td>
                   		<td>
                   		<select>
                   		<option>Medicina General</option> 
                   		<option>Oftamología</option>
                   		<option>Traumatología</option>                  		
                   		</select>
-                  		</td>                 		
-                  	</tr>
+                  		</td>
+                  	<tr>
+                  		<td width ="80px">Fecha:</td>
+                  		<td>
+						<!-- Calendario JQuery-UI -->							
+						<input type="text" id="datepicker">
+						<!-- Calendario JQuery-UI -->
+                  		</td>
+                  	</tr>                  	
                   	<tr>
                   		<td colspan="8">&nbsp;</td>                  		                 		
                   	</tr>
@@ -107,39 +127,20 @@
                   	</tr>
                   	<tr>
                   		<td width ="80px">Fecha:</td>
-                  		<td width ="80px"><input type="text"> </td>
+                  		<td width ="80px">[Fecha] </td>
                   		<td>&nbsp;</td>
                   		<td width ="50px">Hora:</td>
-                  		<td width ="50px" >
-                  		<select>
-                  		<option>08</option> 
-                  		<option>09</option>
-                  		<option>10</option>
-                  		<option>11</option>
-                  		<option>12</option>
-                  		<option>13</option>
-                  		<option>14</option>
-                  		<option>15</option>
-                  		<option>16</option>                  		                  		
-                  		</select>
-                  		</td>
-                  		<td>:</td>
-                  		<td width ="50px">
-                  		<select>
-                  		<option>00</option> 
-                  		<option>30</option>                  		
-                  		</select> 
+                  		<td colspan="2" width ="50px" >
+                  		[Hora]
                   		</td>                  		
-                  		<td>&nbsp;</td>
-                  		<td width ="80px"><input class="button" type="button" value="Validar"></td>                  		
+                  		<td>&nbsp;</td>                  		
                   	</tr>
                   	<tr>
                   		<td width ="80px">D.N.I.:</td>
                   		<td><input type="text"></td>
                   		<td>&nbsp;</td>
                   		<td width ="80px">Nombre:</td>
-                  		<td colspan="5"><input type="text" ></td>
-                  		<td>&nbsp;</td>
+                  		<td colspan="5"><input type="text" ></td>                  		
                   	</tr>
                   </table>                  	
                 </div>
