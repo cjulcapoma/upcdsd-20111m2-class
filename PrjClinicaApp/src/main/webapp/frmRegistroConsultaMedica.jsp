@@ -14,7 +14,7 @@
 function abrirVentana(url) {
     window.open(url, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, " + 
     			"statusbar=no, tittlebar=no, width=900, height=400");
-    }
+}
 
 function obtenerDatosConsulta(){
     this.document.forms[0].hdAccion.value='obtenerDatosConsulta';
@@ -22,7 +22,23 @@ function obtenerDatosConsulta(){
     this.document.forms[0].submit();
 }
 
+function agregarMedicina(){
+    this.document.forms[0].hdAccion.value='agregarMedicina';
+    this.document.forms[0].action='registroConsultaServlet';
+    this.document.forms[0].submit();
+}
 
+function agregarExamen(){
+    this.document.forms[0].hdAccion.value='agregarExamen';
+    this.document.forms[0].action='registroConsultaServlet';
+    this.document.forms[0].submit();
+}
+
+function registrarConsultaMedica(){
+    this.document.forms[0].hdAccion.value='registrarConsultaMedica';
+    this.document.forms[0].action='registroConsultaServlet';
+    this.document.forms[0].submit();
+}
 </script>
 
 </head>
@@ -42,8 +58,8 @@ function obtenerDatosConsulta(){
       	<li><a href="frmRegistroReservaMedica.jsp" >Reservas</a></li>
       	<li><a href="frmRegistroPagoConsulta.jsp">Pago Consulta</a></li>        
         <li><a href="frmRegistroConsultaMedica.jsp" class="current">Atención Consulta</a></li>
-        <li><a href="frmVentaMedicamentos.jsp" >Medicamentos</a></li>
-        <li><a href="frmRegistroExamenMedico.jsp"  >Examen Médico</a></li>          
+        <li><a href="frmVentaMedicamentos.jsp">Medicamentos</a></li>
+        <li><a href="frmRegistroExamenMedico.jsp">Examen Médico</a></li>          
       </ul>
       <!-- /.nav -->      
     </div>
@@ -67,7 +83,7 @@ function obtenerDatosConsulta(){
                   <table width="100%" border="0">
                   	<tr>
                   		<td width ="80px">Nro. Consulta:</td>
-                  		<td width ="125px"><input type="text" size="15"></td> 
+                  		<td width ="125px"><input type="text" size="12" name="nroConsulta"></td> 
 						<td width ="30px">&nbsp;</td>  
                   		<td colspan="3"><input type="button" class="button" value="Consultar"
                   			onclick="javascript:obtenerDatosConsulta()"></td>               		
@@ -77,7 +93,7 @@ function obtenerDatosConsulta(){
                   		<td width ="125px"><c:out value="${nombrePaciente}"/></td> 
 						<td width ="30px">&nbsp;</td>  
                   		<td width ="50px">D.N.I:</td>
-                  		<td width ="120px">[Nro. D.N.I.]</td>    
+                  		<td width ="120px"><c:out value="${dniPaciente}"/></td>    
                   		<td><input type="button" onClick="abrirVentana('poppupHistorialConsultas.jsp')" 
                   			class="button" value="Historial"></td>               		
                   	</tr>
@@ -115,12 +131,13 @@ function obtenerDatosConsulta(){
                   <table width="100%">
                   	<tr>
                   		<td width ="80px">Codigo Med.:</td>
-                  		<td width ="80px"><input type="text" size="12"></td> 
+                  		<td width ="80px"><input type="text" size="12" name="codMedicina"></td> 
 						<td width ="20px">&nbsp;</td>  
                   		<td width ="60px">Cantidad:</td>     
-                  		<td width ="60px"><input type="text" size="8"></td>
+                  		<td width ="60px"><input type="text" size="8" name="cantMedicina"></td>
                   		<td width ="20px">&nbsp;</td>  
-                  		<td ><input type="button" class="button" value="Agregar"></td>  
+                  		<td ><input type="button" class="button" value="Agregar"
+                  			onclick="javascript:agregarMedicina()"></td>  
                   	</tr>
                   	<tr>
                   		<td width ="80px" height="20px">Medicamento:</td>
@@ -134,13 +151,15 @@ function obtenerDatosConsulta(){
                   					<th width ="250px">Nombre Medicamento</td>
                   					<th width ="70px">Cantidad</td>
                   					<th width ="70px">Eliminar</td>
-                  				</tr>                  				
-                  				<tr>
-                  					<td>&nbsp;</td>
-                  					<td>&nbsp;</td>
-                  					<td>&nbsp;</td>
-                  					<td align="center"><a href="#">Eliminar</a></td>
-                  				</tr>
+                  				</tr>   
+					            <c:forEach var="medicina" items="${medicinas}">
+					                <tr>
+					                    <td><c:out value="${medicina.coMedicamento}"/></td>
+					                    <td><c:out value="${medicina.noMedicamento}"/></td>
+					                    <td><c:out value="${medicina.cantidad}"/></td>
+					                    <td><a href="#">Eliminar</a></td>
+					                </tr>
+					            </c:forEach>
                   			</table>
 						</td>
                   	</tr>
@@ -156,12 +175,13 @@ function obtenerDatosConsulta(){
                   <table width="100%">
                   	<tr>
                   		<td width ="80px" >Codigo Exam:</td>
-                  		<td width ="80px"><input type="text" size="12"></td> 
+                  		<td width ="80px"><input type="text" size="12" name="codExamen"></td> 
 						<td width ="20px">&nbsp;</td>  
                   		<td width ="60px">Cantidad:</td>     
-                  		<td width ="60px"><input type="text" size="8"></td>
+                  		<td width ="60px"><input type="text" size="8" name="cantExamen"></td>
                   		<td width ="20px">&nbsp;</td>  
-                  		<td ><input type="button" class="button" value="Agregar"></td>  
+                  		<td ><input type="button" class="button" value="Agregar"
+                  			onclick="javascript:agregarExamen()"></td>  
                   	</tr>
                   	<tr>
                   		<td width ="80px" height="20px">Examen:</td>
@@ -176,12 +196,14 @@ function obtenerDatosConsulta(){
                   					<th width ="70px">Cantidad</td>
                   					<th width ="70px">Eliminar</td>
                   				</tr>                  				
-                  				<tr>
-                  					<td>&nbsp;</td>
-                  					<td>&nbsp;</td>
-                  					<td>&nbsp;</td>
-                  					<td align="center"><a href="#">Eliminar</a></td>
-                  				</tr>
+					            <c:forEach var="examen" items="${examenes}">
+					                <tr>
+					                    <td><c:out value="${examen.coExamenMedico}"/></td>
+					                    <td><c:out value="${examen.noExamen}"/></td>
+					                    <td><c:out value="${examen.cantidad}"/></td>
+					                    <td><a href="#">Eliminar</a></td>
+					                </tr>
+					            </c:forEach>
                   			</table>
 						</td>
                   	</tr>
@@ -195,15 +217,16 @@ function obtenerDatosConsulta(){
                 <div class="inner">
                   <table width="100%">
                   	<tr>
-                  		<td align="center"><input type="button" class="button" value="Registrar"></td>             		
-                  		<td align="center"><input onclick="location.href='index.jsp'" type="button" class="button" value="Cerrar"></td>
+                  		<td align="center"><input type="button" class="button" value="Registrar"
+                  			onclick="javascript:registrarConsultaMedica()"></td>             		
+                  		<td align="center"><input type="button" class="button" value="Cerrar"
+                  			onclick="location.href='index.jsp'"></td>
                   		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   	</tr>
                   </table>                   	
                 </div>
               </div>
-            <!-- /.box -->            
-            
+            <!-- /.box -->                  
             
             </div>
           </div>
@@ -216,7 +239,7 @@ function obtenerDatosConsulta(){
   <div id="footer">
   	<div class="container">
       <div class="inside">
-      	&nbsp;&copy; 2010 &nbsp; &nbsp;<input type="hidden" name="hdAccion">
+      	&nbsp;&copy; 2011 &nbsp; &nbsp;<input type="hidden" name="hdAccion">
       </div>
     </div>
   </div>
