@@ -103,5 +103,10 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		return historialConsultas;
 	}
 
+	@Override
+	public List<ConsultaMedicaBean> obtenerConsultasMedicas() {
+		return listaConsultasMedicas;
+	}
+
 
 }

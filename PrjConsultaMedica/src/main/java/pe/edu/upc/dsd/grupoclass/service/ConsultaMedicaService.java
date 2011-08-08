@@ -22,4 +22,5 @@ public interface ConsultaMedicaService {
 			@WebParam(name="examenConsultaBean") ExamenConsultaBean examenConsultaBean);
 		
 	public List<ConsultaMedicaBean> obtenerHistorialConsultasPaciente(@WebParam(name="dniPaciente") String dniPaciente);	
+	public List<ConsultaMedicaBean> obtenerConsultasMedicas();
 }
