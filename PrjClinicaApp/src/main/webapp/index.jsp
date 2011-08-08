@@ -21,11 +21,11 @@
     	<!-- /.logo -->
       <!-- .nav -->
       <ul class="nav">      	
-        <li><a href="pages/frmRegistroReservaMedica.jsp"  >Reservas</a></li>
-      	<li><a href="pages/frmRegistroPagoConsulta.jsp">Pago Consulta</a></li>        
-        <li><a href="pages/frmRegistroConsultaMedica.jsp">Atención Consulta</a></li>
-        <li><a href="pages/frmVentaMedicamentos.jsp" class="current">Medicamentos</a></li>
-        <li><a href="pages/frmRegistroExamenMedico.jsp" >Examen Médico</a></li>                
+        <li><a href="frmRegistroReservaMedica.jsp">Reservas</a></li>
+      	<li><a href="frmRegistroPagoConsulta.jsp">Pago Consulta</a></li>        
+        <li><a href="frmRegistroConsultaMedica.jsp">Atención Consulta</a></li>
+        <li><a href="frmVentaMedicamentos.jsp" class="current">Medicamentos</a></li>
+        <li><a href="frmRegistroExamenMedico.jsp" >Examen Médico</a></li>                
       </ul>
       <!-- /.nav -->      
     </div>
