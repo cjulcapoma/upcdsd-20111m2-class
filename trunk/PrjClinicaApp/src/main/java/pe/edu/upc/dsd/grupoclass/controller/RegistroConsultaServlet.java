@@ -22,8 +22,13 @@ public class RegistroConsultaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("en el do gettt");
-		String accion = request.getAttribute("hdAccion").toString();
-		
+		String accion = "";
+		if(request.getParameter("hdAccion")==null){
+			System.out.println("accion nulaaa");
+		}else{
+			accion = request.getParameter("hdAccion").toString();
+		}
+				
 		//Ejemplo para llamar 2 metodos desde un mismo jsp
 		if(accion.equals("obtenerDatosConsulta")){
 			request.setAttribute("nombrePaciente", "obtenerDatosConsulta");
