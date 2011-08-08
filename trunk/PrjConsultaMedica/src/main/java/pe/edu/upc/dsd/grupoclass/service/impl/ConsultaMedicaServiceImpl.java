@@ -1,6 +1,7 @@
 package pe.edu.upc.dsd.grupoclass.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import pe.edu.upc.dsd.grupoclass.bean.ConsultaMedicaBean;
@@ -15,6 +16,25 @@ import javax.jws.WebService;
 public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 	
 	public ArrayList<ConsultaMedicaBean> listaConsultasMedicas = new ArrayList<ConsultaMedicaBean>();
+	
+	public ConsultaMedicaServiceImpl(){
+		Date diaActual = new Date();
+		ConsultaMedicaBean consultaMedica;				
+		
+		consultaMedica = new ConsultaMedicaBean();
+		consultaMedica.setNoPaciente("Debora Jeronimo");
+		consultaMedica.setDniPaciente("45477388");
+		consultaMedica.setFechaHoraConsulta(diaActual);
+		consultaMedica.setIdReservaMedica(1);
+		listaConsultasMedicas.add(consultaMedica);
+		
+		consultaMedica = new ConsultaMedicaBean();
+		consultaMedica.setNoPaciente("Rut Jeronimo");
+		consultaMedica.setDniPaciente("12345678");
+		consultaMedica.setFechaHoraConsulta(diaActual);
+		consultaMedica.setIdReservaMedica(2);		
+		listaConsultasMedicas.add(consultaMedica);	
+	}
 	
 	public boolean registrarConsultaMedica(ConsultaMedicaBean consultaMedicaBean) {	
 		consultaMedicaBean.setIdConsultaMedica(listaConsultasMedicas.size()+1);
