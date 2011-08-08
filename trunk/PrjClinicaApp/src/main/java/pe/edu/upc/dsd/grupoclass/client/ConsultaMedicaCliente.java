@@ -10,30 +10,38 @@ import pe.edu.upc.dsd.grupoclass.service.impl.ConsultaMedicaServiceImplServiceLo
 
 public class ConsultaMedicaCliente {
 
-	public ConsultaMedicaBean registrarConsultaMedica() throws RemoteException{
-		ConsultaMedicaServiceImplServiceLocator consultaMedicaServiceLocator =
-			new ConsultaMedicaServiceImplServiceLocator();
-		ConsultaMedicaBean consultaMedicaBean2 = new ConsultaMedicaBean();
+	ConsultaMedicaServiceImplServiceLocator consultaMedicaServiceLocator =
+		new ConsultaMedicaServiceImplServiceLocator();	
+	
+	public boolean registrarConsultaMedica(ConsultaMedicaBean consultaMedicaBean) throws RemoteException{		
+		boolean resultado = false;
 		try {
 			ConsultaMedicaService consultaMedicaWS =
 				consultaMedicaServiceLocator.getConsultaMedicaServiceImplPort();
-			
-			ConsultaMedicaBean consultaMedicaBean = new ConsultaMedicaBean();
-			consultaMedicaBean.setNoPaciente("Luis Kina");
-			
-			consultaMedicaWS.registrarConsultaMedica(consultaMedicaBean);
 						
-			consultaMedicaBean2 = consultaMedicaWS.obtenerConsultaMedica(1);
-					
-			System.out.println("listaaaa::::"+consultaMedicaWS.obtenerConsultasMedicas().length);
+			resultado = consultaMedicaWS.registrarConsultaMedica(consultaMedicaBean);					
+			System.out.println("listaConsulta: "+consultaMedicaWS.obtenerConsultasMedicas().length);
 			
 		} catch (ServiceException e) {
 			System.out.println("errorrr");
 			e.printStackTrace();
-		}
-		
-		return consultaMedicaBean2;
+		}		
+		return resultado;
 	}
-
+	
+	public ConsultaMedicaBean obtenerConsultaMedica(int idConsultaMedica) throws RemoteException{		
+		ConsultaMedicaBean consultaMedicaBean = null;
+		try {
+			ConsultaMedicaService consultaMedicaWS =
+				consultaMedicaServiceLocator.getConsultaMedicaServiceImplPort();
+						
+			consultaMedicaBean = consultaMedicaWS.obtenerConsultaMedica(idConsultaMedica);
+			
+		} catch (ServiceException e) {
+			System.out.println("errorrr");
+			e.printStackTrace();
+		}		
+		return consultaMedicaBean;
+	}
 }
  

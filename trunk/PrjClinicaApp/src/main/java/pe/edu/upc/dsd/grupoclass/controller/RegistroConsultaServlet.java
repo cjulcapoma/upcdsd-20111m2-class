@@ -1,6 +1,9 @@
 package pe.edu.upc.dsd.grupoclass.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
 import pe.edu.upc.dsd.grupoclass.bean.ConsultaMedicaBean;
+import pe.edu.upc.dsd.grupoclass.bean.ExamenConsultaBean;
+import pe.edu.upc.dsd.grupoclass.bean.MedicamentoRecetaBean;
 import pe.edu.upc.dsd.grupoclass.bean.ReservaMedicaBean;
 import pe.edu.upc.dsd.grupoclass.client.ConsultaMedicaCliente;
 import pe.edu.upc.dsd.grupoclass.client.ReservaMedicaCliente;
@@ -21,22 +26,30 @@ public class RegistroConsultaServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("en el do gettt");
-		String accion = "";
-		if(request.getParameter("hdAccion")==null){
-			System.out.println("accion nulaaa");
-		}else{
-			accion = request.getParameter("hdAccion").toString();
-		}
 				
-		//Ejemplo para llamar 2 metodos desde un mismo jsp
+		ConsultaMedicaCliente consultaMedicaCliente = new ConsultaMedicaCliente();	
+		List<MedicamentoRecetaBean> medicamentos = new ArrayList<MedicamentoRecetaBean>();
+		List<ExamenConsultaBean> examenes = new ArrayList<ExamenConsultaBean>();
+		
+		String accion = request.getParameter("hdAccion").toString();
+		
 		if(accion.equals("obtenerDatosConsulta")){
-			request.setAttribute("nombrePaciente", "obtenerDatosConsulta");
+			String nroConsulta = request.getParameter("nroConsulta");
+			if(nroConsulta!=null){
+				ConsultaMedicaBean consultaMedicaBean = consultaMedicaCliente.obtenerConsultaMedica(
+						Integer.parseInt(nroConsulta));
+				request.setAttribute("nombrePaciente", consultaMedicaBean.getNoPaciente());
+				request.setAttribute("dniPaciente", consultaMedicaBean.getDniPaciente());
+			}			
+		}else if(accion.equals("agregarMedicina")){
+			
+			
+		}else if(accion.equals("agregarExamen")){
 			
 		}else if(accion.equals("registrarConsultaMedica")){
-			request.setAttribute("nombrePaciente", "registrarConsultaMedica");
+			
 		}
-		
+					
 		//Ejemplo para llamar un metodo de ConsultaMedicaCliente
 		/*ConsultaMedicaCliente consultaMedicaCliente = new ConsultaMedicaCliente();		
 		ConsultaMedicaBean consultaMedicaBean = consultaMedicaCliente.registrarConsultaMedica();		
