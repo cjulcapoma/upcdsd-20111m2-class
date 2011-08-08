@@ -12,17 +12,66 @@ public class DataClass {
 		
 	public static ArrayList<HorarioDoctorBean> listarHorariosDoctor(){
 		ArrayList<HorarioDoctorBean> listaHorariosDoctor = new ArrayList();
-		HorarioDoctorBean hdoctor1_h1 = new HorarioDoctorBean();
-		Date fecha1 = new Date();
-		Calendar cal = GregorianCalendar.getInstance();
-		cal.set(2011,07,17,8,0,0);
-		fecha1 = cal.getTime();
-		hdoctor1_h1.setIdDoctor(1);
-		hdoctor1_h1.setFechaHora(fecha1);
-		hdoctor1_h1.setIndReserva(false);
-		listaHorariosDoctor.add(hdoctor1_h1);
+		HorarioDoctorBean hdoctor;
 		
+		hdoctor = new HorarioDoctorBean();		
+		hdoctor.setIdDoctor(1);
+		hdoctor.setFecha("10/10/2011");
+		hdoctor.setHora("10:00");
+		hdoctor.setIndReserva(true);
+		listaHorariosDoctor.add(hdoctor);
+		
+		hdoctor = new HorarioDoctorBean();
+		hdoctor.setIdDoctor(1);
+		hdoctor.setFecha("10/10/2011");
+		hdoctor.setHora("10:30");
+		hdoctor.setIndReserva(true);
+		listaHorariosDoctor.add(hdoctor);
+		
+		hdoctor = new HorarioDoctorBean();
+		hdoctor.setIdDoctor(1);
+		hdoctor.setFecha("10/10/2011");
+		hdoctor.setHora("11:00");
+		hdoctor.setIndReserva(true);
+		listaHorariosDoctor.add(hdoctor);
+		
+		hdoctor = new HorarioDoctorBean();
+		hdoctor.setIdDoctor(1);
+		hdoctor.setFecha("10/10/2011");
+		hdoctor.setHora("11:30");
+		hdoctor.setIndReserva(true);
+		listaHorariosDoctor.add(hdoctor);
+
+
+		hdoctor = new HorarioDoctorBean();		
+		hdoctor.setIdDoctor(2);
+		hdoctor.setFecha("11/10/2011");
+		hdoctor.setHora("10:00");
+		hdoctor.setIndReserva(true);
+		listaHorariosDoctor.add(hdoctor);
+		
+		hdoctor = new HorarioDoctorBean();
+		hdoctor.setIdDoctor(2);
+		hdoctor.setFecha("11/10/2011");
+		hdoctor.setHora("10:30");
+		hdoctor.setIndReserva(true);
+		listaHorariosDoctor.add(hdoctor);
+		
+		hdoctor = new HorarioDoctorBean();
+		hdoctor.setIdDoctor(2);
+		hdoctor.setFecha("11/10/2011");
+		hdoctor.setHora("11:00");
+		hdoctor.setIndReserva(true);
+		listaHorariosDoctor.add(hdoctor);
+		
+		hdoctor = new HorarioDoctorBean();
+		hdoctor.setIdDoctor(2);
+		hdoctor.setFecha("11/10/2011");
+		hdoctor.setHora("11:30");
+		hdoctor.setIndReserva(true);
+		listaHorariosDoctor.add(hdoctor);			
+				
 		return listaHorariosDoctor;
 	}
-	
+		
 }

@@ -16,8 +16,7 @@ public class ReservaMedicaBean {
 	}
 	public void setIndReserva(boolean indReserva) {
 		this.indReserva = indReserva;
-	}
-	
+	}	
 	
 	public int getIdReservaMedica() {
 		return idReservaMedica;

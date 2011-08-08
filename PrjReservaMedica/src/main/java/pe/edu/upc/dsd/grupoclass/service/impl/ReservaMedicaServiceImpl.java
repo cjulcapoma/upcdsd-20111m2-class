@@ -1,5 +1,6 @@
 package pe.edu.upc.dsd.grupoclass.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,9 +16,11 @@ import pe.edu.upc.dsd.grupoclass.service.ReservaMedicaService;
 
 @WebService(endpointInterface = "pe.edu.upc.dsd.grupoclass.service.ReservaMedicaService")
 public class ReservaMedicaServiceImpl implements ReservaMedicaService {
+	
+	SimpleDateFormat sdfFecha = new SimpleDateFormat("dd/MM/yyyy");
+	SimpleDateFormat sdfHora = new SimpleDateFormat("hh:MM");
 
 	public ArrayList<HorarioDoctorBean> listaHorariosDoctor;
-
 	public ArrayList<ReservaMedicaBean> listaReservasMedicas = new ArrayList();
 
 	public ReservaMedicaServiceImpl() {
@@ -30,11 +33,13 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 		return true;
 	}
 
-	public boolean verificarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
+	public boolean verificarDisponibilidadDoctor(int idDoctor, 
+			String fecha, String hora) {
 		boolean resultado = false;
 		for(HorarioDoctorBean horarioDoctor : listaHorariosDoctor){
 			if(horarioDoctor.getIdDoctor()==idDoctor && 
-					horarioDoctor.getFechaHora().equals(fechaHora) &&
+					horarioDoctor.getFecha().equals(fecha) &&
+					horarioDoctor.getHora().equals(hora) &&
 					horarioDoctor.isIndReserva()){
 				resultado = true;
 				break;
@@ -43,11 +48,13 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 		return resultado;
 	}
 
-	public boolean actualizarDisponibilidadDoctor(int idDoctor, Date fechaHora) {
+	public boolean actualizarDisponibilidadDoctor(int idDoctor, 
+			String fecha, String hora) {
 		boolean resultado = false;
 		for(HorarioDoctorBean horarioDoctor : listaHorariosDoctor){
 			if(horarioDoctor.getIdDoctor()==idDoctor && 
-					horarioDoctor.getFechaHora().equals(fechaHora) &&
+					horarioDoctor.getFecha().equals(fecha) &&
+					horarioDoctor.getHora().equals(hora) &&
 					horarioDoctor.isIndReserva()){
 				horarioDoctor.setIndReserva(false);
 				resultado=true;
@@ -76,6 +83,12 @@ public class ReservaMedicaServiceImpl implements ReservaMedicaService {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public List<ReservaMedicaBean> obtenerReservasMedicas() {
+		// TODO Auto-generated method stub
+		return listaReservasMedicas;
 	}
 
 }
