@@ -10,8 +10,23 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/layout.css" rel="stylesheet" type="text/css" />
+<script language="javascript">
+	function abrirVentana(url) {
+		window.open(url, "nuevo",
+				"directories=no, location=no, menubar=no, scrollbars=yes, "
+						+ "statusbar=no, tittlebar=no, width=900, height=400");
+	}
+
+	function obtenerDatosPaciente() {
+		this.document.forms[0].hdAccion.value = 'obtenerDatosPaciente';
+		this.document.forms[0].action = 'ventaMedicamentosServlet';
+		this.document.forms[0].submit();
+	}
+</script>
+
 </head>
 <body id="registroConsultaMedica">
+<form name="frmVentaMedicamentos">
 
 	<!-- header -->
 	<div id="header">
@@ -151,5 +166,6 @@
 			<div class="inside">&nbsp;&copy; 2011 &nbsp; &nbsp;</div>
 		</div>
 	</div>
+	</form>
 </body>
 </html>
