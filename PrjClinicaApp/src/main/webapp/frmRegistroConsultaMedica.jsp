@@ -90,10 +90,10 @@ function registrarConsultaMedica(){
                   	</tr>
                   	<tr>
                   		<td width ="80px" height="30px">Paciente:</td>
-                  		<td width ="125px"><c:out value="${nombrePaciente}"/></td> 
+                  		<td width ="125px"><c:out value="${consulta.noPaciente}"/></td> 
 						<td width ="30px">&nbsp;</td>  
                   		<td width ="50px">D.N.I:</td>
-                  		<td width ="120px"><c:out value="${dniPaciente}"/></td>    
+                  		<td width ="120px"><c:out value="${consulta.dniPaciente}"/></td>    
                   		<td><input type="button" onClick="abrirVentana('poppupHistorialConsultas.jsp')" 
                   			class="button" value="Historial"></td>               		
                   	</tr>
@@ -111,13 +111,13 @@ function registrarConsultaMedica(){
                   		<td width ="100%">Diagnostico</td>             		
                   	</tr>
                   	<tr>
-                  		<td><textarea cols="100" rows="3"></textarea></td>          		
+                  		<td><textarea cols="100" rows="3" name="diagnostico"><c:out value="${consulta.diagnostico}"/></textarea></td>          		
                   	</tr>
                   	<tr>
                   		<td width ="100%">Tratamiento</td>             		
                   	</tr>
                   	<tr>
-                  		<td><textarea cols="100" rows="3"></textarea></td>          		
+                  		<td><textarea cols="100" rows="3" name="tratamiento"><c:out value="${consulta.tratamiento}"/></textarea></td>          		
                   	</tr>
                   </table>                   	
                 </div>
