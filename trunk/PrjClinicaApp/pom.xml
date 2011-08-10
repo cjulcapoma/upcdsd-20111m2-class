@@ -8,6 +8,13 @@
 	<name>PrjClinicaApp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+	
+	<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>1.7.1</version>
+			<scope>compile</scope>
+		</dependency>
 	   <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
