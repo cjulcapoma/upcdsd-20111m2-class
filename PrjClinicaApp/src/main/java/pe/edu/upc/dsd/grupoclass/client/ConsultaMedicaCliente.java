@@ -29,6 +29,24 @@ public class ConsultaMedicaCliente {
 		return resultado;
 	}
 	
+	public boolean registrarResultadoConsultaMedica(ConsultaMedicaBean consultaMedicaBean) throws RemoteException{		
+		boolean resultado = false;
+		try {
+			ConsultaMedicaService consultaMedicaWS =
+				consultaMedicaServiceLocator.getConsultaMedicaServiceImplPort();
+						
+			resultado = consultaMedicaWS.registrarResultadoConsultaMedica(consultaMedicaBean);
+			
+			System.out.println("listaConsulta: "+consultaMedicaWS.obtenerConsultasMedicas().length);
+			
+		} catch (ServiceException e) {
+			System.out.println("errorrr");
+			e.printStackTrace();
+		}		
+		return resultado;
+	}
+	
+	
 	public ConsultaMedicaBean obtenerConsultaMedica(int idConsultaMedica) throws RemoteException{		
 		ConsultaMedicaBean consultaMedicaBean = null;
 		try {
