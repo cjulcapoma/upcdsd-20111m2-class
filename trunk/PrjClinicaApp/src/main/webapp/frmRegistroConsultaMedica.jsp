@@ -12,6 +12,8 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/layout.css" rel="stylesheet" type="text/css" />
 
+<script language="javascript" type="text/javascript" src="js/validaciones.js" />
+
 <script language="javascript"> 
 function abrirVentana(url) {
     window.open(url, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, " + 
@@ -25,6 +27,11 @@ function obtenerDatosConsulta(){
 }
 
 function agregarMedicina(){
+	var cantMedicina = this.document.forms[0].cantMedicina.value;
+	if(!validaNumero(cantMedicina)){
+		alert("La cantidad debe ser un numero");
+		return;
+	}	
     this.document.forms[0].hdAccion.value='agregarMedicina';    
     this.document.forms[0].action='registroConsultaServlet';
     this.document.forms[0].submit();
