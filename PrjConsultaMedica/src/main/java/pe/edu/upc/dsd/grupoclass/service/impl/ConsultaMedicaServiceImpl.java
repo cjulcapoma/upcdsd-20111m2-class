@@ -22,6 +22,7 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		ConsultaMedicaBean consultaMedica;				
 		
 		consultaMedica = new ConsultaMedicaBean();
+		consultaMedica.setIdConsultaMedica(1);
 		consultaMedica.setNoPaciente("Debora Jeronimo");
 		consultaMedica.setDniPaciente("45477388");
 		consultaMedica.setFechaHoraConsulta(diaActual);
@@ -29,6 +30,7 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		listaConsultasMedicas.add(consultaMedica);
 		
 		consultaMedica = new ConsultaMedicaBean();
+		consultaMedica.setIdConsultaMedica(2);
 		consultaMedica.setNoPaciente("Rut Jeronimo");
 		consultaMedica.setDniPaciente("12345678");
 		consultaMedica.setFechaHoraConsulta(diaActual);
@@ -54,8 +56,7 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		return objConsultaMedica;
 	}
 
-	public boolean registrarResultadoConsultaMedica(
-			ConsultaMedicaBean consultaMedicaBean) {		
+	public boolean registrarResultadoConsultaMedica(ConsultaMedicaBean consultaMedicaBean) {		
 		boolean resultado = false;
 		
 		for(int i=0; i<listaConsultasMedicas.size(); i++){
@@ -111,7 +112,7 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		}		
 		return resultado;
 	}
-
+	
 	public List<ConsultaMedicaBean> obtenerHistorialConsultasPaciente(
 			String dniPaciente) {
 		List<ConsultaMedicaBean> historialConsultas = new ArrayList<ConsultaMedicaBean>();
@@ -123,7 +124,6 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		return historialConsultas;
 	}
 
-	@Override
 	public List<ConsultaMedicaBean> obtenerConsultasMedicas() {
 		return listaConsultasMedicas;
 	}
