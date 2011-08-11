@@ -83,7 +83,7 @@ public class ConstantesDao {
 	}
 
 	public String obtenerNombreMedicamentoPorCodigo(String codMedicamento){
-		String noMedicamento=" ";
+		String noMedicamento="";
 		for(String medicina[] : listaMedicamentos){
 			if(medicina[0].equals(codMedicamento)){
 				noMedicamento = medicina[1];
@@ -94,7 +94,7 @@ public class ConstantesDao {
 	}
 
 	public String obtenerNombreExamenPorCodigo(String codExamen){
-		String noExamen=" ";
+		String noExamen="";
 		for(String examen[] : listaExamenesMedicos){
 			if(examen[0].equals(codExamen)){
 				noExamen = examen[1];

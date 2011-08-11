@@ -42,9 +42,15 @@ public class RegistroConsultaServlet extends HttpServlet {
 		
 		if(accion.equals("obtenerDatosConsulta")){
 			String nroConsulta = request.getParameter("nroConsulta");
-			if(nroConsulta!=null){
+			
+			try{				
 				consultaMedicaBean = consultaMedicaCliente.obtenerConsultaMedica(
-						Integer.parseInt(nroConsulta));
+					Integer.parseInt(nroConsulta));
+			}catch(Exception e){
+				System.out.println("nroConsulta invalida");
+			}
+				
+			if(consultaMedicaBean!=null){
 				session.setAttribute("consulta", consultaMedicaBean);
 				
 				MedicamentoRecetaBean[] listaMedicamentos = consultaMedicaBean.getListaMedicamentos();
@@ -67,52 +73,79 @@ public class RegistroConsultaServlet extends HttpServlet {
 						examenes.add(listaExamenes[i]);
 					}
 					session.setAttribute("examenes", examenes);
-				}				
-			}			
+				}
+			}else{
+				session.setAttribute("consulta", null);
+				session.setAttribute("medicamentos", null);
+				session.setAttribute("examenes", null);
+			}
+						
 		}else if(accion.equals("agregarMedicina")){					
 			
+			boolean validacion = true;
 			consultaMedicaBean = (ConsultaMedicaBean)session.getAttribute("consulta");
-			medicamentos = (List<MedicamentoRecetaBean>)session.getAttribute("medicinas");	
-						
-			String codMedicina = request.getParameter("codMedicina").toString();
-			int cantidad = Integer.parseInt(request.getParameter("cantMedicina").toString());
+			medicamentos = (List<MedicamentoRecetaBean>)session.getAttribute("medicinas");
 			if(medicamentos==null)	medicamentos = new ArrayList<MedicamentoRecetaBean>();
-						
-			MedicamentoRecetaBean medicamentoRecetaBean = new MedicamentoRecetaBean();
-			medicamentoRecetaBean.setIdMedicamento(medicamentos.size()+1);
-			medicamentoRecetaBean.setCoMedicamento(codMedicina);
-			medicamentoRecetaBean.setNoMedicamento(
-					constantesDao.obtenerNombreMedicamentoPorCodigo(codMedicina));
-			medicamentoRecetaBean.setCantidad(cantidad);
-			medicamentos.add(medicamentoRecetaBean);
 			
-			consultaMedicaBean.setDiagnostico(request.getParameter("diagnostico").toString());
-			consultaMedicaBean.setTratamiento(request.getParameter("tratamiento").toString());
+			String codMedicina="", noMedicina="";  int cantidad=0;
+			try{
+				codMedicina = request.getParameter("codMedicina").toString();
+				cantidad = Integer.parseInt(request.getParameter("cantMedicina").toString());
+				noMedicina = constantesDao.obtenerNombreMedicamentoPorCodigo(codMedicina);
+				if(noMedicina.equals("")){
+					validacion = false;
+				}
+			}catch(Exception e){
+				validacion = false;
+			}
 			
-			session.setAttribute("medicinas", medicamentos);
-			session.setAttribute("consulta", consultaMedicaBean);	
+			if(validacion){
+				MedicamentoRecetaBean medicamentoRecetaBean = new MedicamentoRecetaBean();
+				medicamentoRecetaBean.setIdMedicamento(medicamentos.size()+1);
+				medicamentoRecetaBean.setCoMedicamento(codMedicina);
+				medicamentoRecetaBean.setNoMedicamento(noMedicina);
+				medicamentoRecetaBean.setCantidad(cantidad);
+				medicamentos.add(medicamentoRecetaBean);
+				
+				consultaMedicaBean.setDiagnostico(request.getParameter("diagnostico").toString());
+				consultaMedicaBean.setTratamiento(request.getParameter("tratamiento").toString());
+				
+				session.setAttribute("medicinas", medicamentos);				
+			}
+			session.setAttribute("consulta", consultaMedicaBean);				
 			
 		}else if(accion.equals("agregarExamen")){			
 			
+			boolean validacion = true;
 			consultaMedicaBean = (ConsultaMedicaBean)session.getAttribute("consulta");
 			examenes = (List<ExamenConsultaBean>)session.getAttribute("examenes");
-			
-			String codExamen = request.getParameter("codExamen").toString();
-			int cantidad = Integer.parseInt(request.getParameter("cantExamen").toString());
 			if(examenes==null)	examenes = new ArrayList<ExamenConsultaBean>();
-									
-			ExamenConsultaBean examenConsultaBean = new ExamenConsultaBean();
-			examenConsultaBean.setIdExamenMedico(examenes.size()+1);
-			examenConsultaBean.setCoExamenMedico(codExamen);
-			examenConsultaBean.setNoExamen(
-					constantesDao.obtenerNombreExamenPorCodigo(codExamen));
-			examenConsultaBean.setCantidad(cantidad);
-			examenes.add(examenConsultaBean);
+												
+			String codExamen="", noExamen="";  int cantidad=0;
+			try{
+				codExamen = request.getParameter("codExamen").toString();
+				cantidad = Integer.parseInt(request.getParameter("cantExamen").toString());
+				noExamen = constantesDao.obtenerNombreExamenPorCodigo(codExamen);
+				if(noExamen.equals("")){
+					validacion = false;
+				}
+			}catch(Exception e){
+				validacion = false;
+			}
 			
-			consultaMedicaBean.setDiagnostico(request.getParameter("diagnostico").toString());
-			consultaMedicaBean.setTratamiento(request.getParameter("tratamiento").toString());
-			
-			session.setAttribute("examenes", examenes);
+			if(validacion){
+				ExamenConsultaBean examenConsultaBean = new ExamenConsultaBean();
+				examenConsultaBean.setIdExamenMedico(examenes.size()+1);
+				examenConsultaBean.setCoExamenMedico(codExamen);
+				examenConsultaBean.setNoExamen(noExamen);
+				examenConsultaBean.setCantidad(cantidad);
+				examenes.add(examenConsultaBean);
+				
+				consultaMedicaBean.setDiagnostico(request.getParameter("diagnostico").toString());
+				consultaMedicaBean.setTratamiento(request.getParameter("tratamiento").toString());
+				
+				session.setAttribute("examenes", examenes);
+			}			
 			session.setAttribute("consulta", consultaMedicaBean);
 			
 		}else if(accion.equals("eliminarMedicina")){
