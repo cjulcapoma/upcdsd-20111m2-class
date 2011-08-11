@@ -1,5 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -23,8 +25,15 @@ function obtenerDatosConsulta(){
 }
 
 function agregarMedicina(){
-    this.document.forms[0].hdAccion.value='agregarMedicina';
+    this.document.forms[0].hdAccion.value='agregarMedicina';    
     this.document.forms[0].action='registroConsultaServlet';
+    this.document.forms[0].submit();
+}
+
+function eliminarMedicina(idMedicina){
+    this.document.forms[0].hdAccion.value='eliminarMedicina';    
+    this.document.forms[0].action='registroConsultaServlet';
+    this.document.forms[0].hdIdMedicina.value=idMedicina;
     this.document.forms[0].submit();
 }
 
@@ -34,8 +43,21 @@ function agregarExamen(){
     this.document.forms[0].submit();
 }
 
+function eliminarExamen(idExamen){
+    this.document.forms[0].hdAccion.value='eliminarExamen';
+    this.document.forms[0].action='registroConsultaServlet';
+    this.document.forms[0].hdIdExamen.value=idExamen;
+    this.document.forms[0].submit();
+}
+
 function registrarConsultaMedica(){
     this.document.forms[0].hdAccion.value='registrarConsultaMedica';
+    this.document.forms[0].action='registroConsultaServlet';
+    this.document.forms[0].submit();
+}
+
+function cerrarRegistroConsultaMedica(){
+    this.document.forms[0].hdAccion.value='cerrarRegistroConsultaMedica';
     this.document.forms[0].action='registroConsultaServlet';
     this.document.forms[0].submit();
 }
@@ -133,9 +155,9 @@ function registrarConsultaMedica(){
                   		<td width ="80px">Codigo Med.:</td>
                   		<td width ="80px"><input type="text" size="12" name="codMedicina"></td> 
 						<td width ="20px">&nbsp;</td>  
-                  		<td width ="60px">Cantidad:</td>     
-                  		<td width ="60px"><input type="text" size="8" name="cantMedicina"></td>
-                  		<td width ="20px">&nbsp;</td>  
+                  		<td width ="50px">Cantidad:</td>     
+                  		<td width ="50px"><input type="text" size="8" name="cantMedicina"></td>
+                  		<td width ="10px">&nbsp;</td>  
                   		<td ><input type="button" class="button" value="Agregar"
                   			onclick="javascript:agregarMedicina()"></td>  
                   	</tr>
@@ -157,7 +179,8 @@ function registrarConsultaMedica(){
 					                    <td><c:out value="${medicina.coMedicamento}"/></td>
 					                    <td><c:out value="${medicina.noMedicamento}"/></td>
 					                    <td><c:out value="${medicina.cantidad}"/></td>
-					                    <td><a href="#">Eliminar</a></td>
+					                    <td><input type="button" value="Eliminar"
+					                    	onclick="javascript:eliminarMedicina('<c:out value="${medicina.cantidad}"/>')"></td>
 					                </tr>
 					            </c:forEach>
                   			</table>
@@ -177,9 +200,9 @@ function registrarConsultaMedica(){
                   		<td width ="80px" >Codigo Exam:</td>
                   		<td width ="80px"><input type="text" size="12" name="codExamen"></td> 
 						<td width ="20px">&nbsp;</td>  
-                  		<td width ="60px">Cantidad:</td>     
-                  		<td width ="60px"><input type="text" size="8" name="cantExamen"></td>
-                  		<td width ="20px">&nbsp;</td>  
+                  		<td width ="50px">Cantidad:</td>     
+                  		<td width ="50px"><input type="text" size="8" name="cantExamen"></td>
+                  		<td width ="10px">&nbsp;</td>  
                   		<td ><input type="button" class="button" value="Agregar"
                   			onclick="javascript:agregarExamen()"></td>  
                   	</tr>
@@ -201,7 +224,8 @@ function registrarConsultaMedica(){
 					                    <td><c:out value="${examen.coExamenMedico}"/></td>
 					                    <td><c:out value="${examen.noExamen}"/></td>
 					                    <td><c:out value="${examen.cantidad}"/></td>
-					                    <td><a href="#">Eliminar</a></td>
+					                    <td><input type="button" value="Eliminar"
+					                    	onclick="javascript:eliminarExamen('<c:out value="${examen.idExamenMedico}"/>')"></td>
 					                </tr>
 					            </c:forEach>
                   			</table>
@@ -220,7 +244,7 @@ function registrarConsultaMedica(){
                   		<td align="center"><input type="button" class="button" value="Registrar"
                   			onclick="javascript:registrarConsultaMedica()"></td>             		
                   		<td align="center"><input type="button" class="button" value="Cerrar"
-                  			onclick="location.href='index.jsp'"></td>
+                  			onclick="javascript:cerrarRegistroConsultaMedica()"></td>
                   		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   	</tr>
                   </table>                   	
@@ -240,6 +264,8 @@ function registrarConsultaMedica(){
   	<div class="container">
       <div class="inside">
       	&nbsp;&copy; 2011 &nbsp; &nbsp;<input type="hidden" name="hdAccion">
+      	<input type="hidden" name="hdIdMedicina">
+      	<input type="hidden" name="hdIdExamen">
       </div>
     </div>
   </div>
