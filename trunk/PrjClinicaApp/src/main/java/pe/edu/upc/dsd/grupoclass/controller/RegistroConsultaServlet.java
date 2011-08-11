@@ -36,6 +36,7 @@ public class RegistroConsultaServlet extends HttpServlet {
 		ConsultaMedicaBean consultaMedicaBean = null;
 		List<MedicamentoRecetaBean> medicamentos = null;
 		List<ExamenConsultaBean> examenes = null;
+		String paginaDestino = "frmRegistroConsultaMedica.jsp";
 				
 		String accion = request.getParameter("hdAccion").toString();
 		
@@ -44,10 +45,29 @@ public class RegistroConsultaServlet extends HttpServlet {
 			if(nroConsulta!=null){
 				consultaMedicaBean = consultaMedicaCliente.obtenerConsultaMedica(
 						Integer.parseInt(nroConsulta));
-				
 				session.setAttribute("consulta", consultaMedicaBean);
-				session.setAttribute("medicinas", null);
-				session.setAttribute("examenes", null);
+				
+				MedicamentoRecetaBean[] listaMedicamentos = consultaMedicaBean.getListaMedicamentos();
+				if(listaMedicamentos==null){
+					session.setAttribute("medicinas", null);
+				}else{
+					medicamentos = new ArrayList<MedicamentoRecetaBean>();
+					for(int i=0; i<listaMedicamentos.length; i++){
+						medicamentos.add(listaMedicamentos[i]);
+					}
+					session.setAttribute("medicinas", medicamentos);
+				}				
+				
+				ExamenConsultaBean[] listaExamenes = consultaMedicaBean.getListaExamenes();
+				if(listaExamenes==null){
+					session.setAttribute("examenes", null);
+				}else{
+					examenes = new ArrayList<ExamenConsultaBean>();
+					for(int i=0; i<listaExamenes.length; i++){
+						examenes.add(listaExamenes[i]);
+					}
+					session.setAttribute("examenes", examenes);
+				}				
 			}			
 		}else if(accion.equals("agregarMedicina")){					
 			
@@ -95,27 +115,66 @@ public class RegistroConsultaServlet extends HttpServlet {
 			session.setAttribute("examenes", examenes);
 			session.setAttribute("consulta", consultaMedicaBean);
 			
+		}else if(accion.equals("eliminarMedicina")){
+			
+			consultaMedicaBean = (ConsultaMedicaBean)session.getAttribute("consulta");
+			medicamentos = (List<MedicamentoRecetaBean>)session.getAttribute("medicinas");
+			
+			int idMedicamento = Integer.parseInt(request.getParameter("hdIdMedicina").toString());
+			for(int i=0; i<medicamentos.size(); i++){
+				if(medicamentos.get(i).getIdMedicamento()==idMedicamento){
+					medicamentos.remove(i);
+				}
+			}			
+			session.setAttribute("medicinas", medicamentos);
+			session.setAttribute("consulta", consultaMedicaBean);
+			
+		}else if(accion.equals("eliminarExamen")){	
+
+			consultaMedicaBean = (ConsultaMedicaBean)session.getAttribute("consulta");
+			examenes = (List<ExamenConsultaBean>)session.getAttribute("examenes");
+			
+			int idExamen = Integer.parseInt(request.getParameter("hdIdExamen").toString());
+			for(int i=0; i<examenes.size(); i++){
+				if(examenes.get(i).getIdExamenMedico()==idExamen){
+					examenes.remove(i);
+				}
+			}			
+			session.setAttribute("medicinas", medicamentos);
+			session.setAttribute("consulta", consultaMedicaBean);
+			
 		}else if(accion.equals("registrarConsultaMedica")){
 			
 			consultaMedicaBean = (ConsultaMedicaBean)session.getAttribute("consulta");
 			medicamentos = (List<MedicamentoRecetaBean>)session.getAttribute("medicinas");	
 			examenes = (List<ExamenConsultaBean>)session.getAttribute("examenes");
 			
-			MedicamentoRecetaBean[] listaMedicamentos = new MedicamentoRecetaBean[medicamentos.size()]; 
-			for(int i=0; i<medicamentos.size(); i++){
-				listaMedicamentos[0] = medicamentos.get(i);
-			}
-			consultaMedicaBean.setListaMedicamentos(listaMedicamentos);
-
-			ExamenConsultaBean[] listaExamenes = new ExamenConsultaBean[examenes.size()]; 
-			for(int i=0; i<examenes.size(); i++){
-				listaExamenes[0] = examenes.get(i);
-			}
-			consultaMedicaBean.setListaExamenes(listaExamenes);
+			if(medicamentos!=null){
+				MedicamentoRecetaBean[] listaMedicamentos = new MedicamentoRecetaBean[medicamentos.size()]; 
+				for(int i=0; i<medicamentos.size(); i++){
+					listaMedicamentos[0] = medicamentos.get(i);
+				}
+				consultaMedicaBean.setListaMedicamentos(listaMedicamentos);
+			}			
 			
-			consultaMedicaCliente.registrarConsultaMedica(consultaMedicaBean);			
+			if(examenes!=null){
+				ExamenConsultaBean[] listaExamenes = new ExamenConsultaBean[examenes.size()]; 
+				for(int i=0; i<examenes.size(); i++){
+					listaExamenes[0] = examenes.get(i);
+				}
+				consultaMedicaBean.setListaExamenes(listaExamenes);
+			}			
+			
+			consultaMedicaCliente.registrarResultadoConsultaMedica(consultaMedicaBean);	
+			
+		}else if(accion.equals("cerrarRegistroConsultaMedica")){
+						
+			session.setAttribute("consulta", null);
+			session.setAttribute("medicinas", null);
+			session.setAttribute("examenes", null);
+			paginaDestino = "index.jsp";
 		}
-		
-		request.getRequestDispatcher("frmRegistroConsultaMedica.jsp").forward(request, response);		
+					
+		request.getRequestDispatcher(paginaDestino).forward(request, response);		
 	}
 }
