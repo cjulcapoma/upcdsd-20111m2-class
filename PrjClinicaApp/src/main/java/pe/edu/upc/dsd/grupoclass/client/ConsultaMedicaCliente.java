@@ -19,6 +19,9 @@ public class ConsultaMedicaCliente {
 			ConsultaMedicaService consultaMedicaWS =
 				consultaMedicaServiceLocator.getConsultaMedicaServiceImplPort();
 						
+			
+			
+			
 			resultado = consultaMedicaWS.registrarConsultaMedica(consultaMedicaBean);					
 			System.out.println("listaConsulta: "+consultaMedicaWS.obtenerConsultasMedicas().length);
 			

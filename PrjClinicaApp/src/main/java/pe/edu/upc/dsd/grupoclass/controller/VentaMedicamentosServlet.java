@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.jms.ConnectionFactory;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import pe.edu.upc.dsd.grupoclass.bean.AfiliadoBean;
 import pe.edu.upc.dsd.grupoclass.bean.ConsultaMedicaBean;
@@ -23,6 +26,7 @@ import pe.edu.upc.dsd.grupoclass.bean.MedicamentoRecetaBean;
 import pe.edu.upc.dsd.grupoclass.bean.ReciboCobroBean;
 import pe.edu.upc.dsd.grupoclass.client.ConsultaMedicaCliente;
 import pe.edu.upc.dsd.grupoclass.dao.ConstantesDao;
+import pe.edu.upc.dsd.grupoclass.jms.MessageProducer;
 
 import com.google.gson.Gson;
 
@@ -51,6 +55,11 @@ public class VentaMedicamentosServlet extends HttpServlet {
 		System.out.println("antess del metodoo");
 
 		//System.out.println("despues de carga");
+		//Configuracion para colas
+		ServletContext context = getServletContext();
+		WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(context);
+
+		MessageProducer messageProducer = (MessageProducer) applicationContext.getBean("messageProducer");
 
 		final RestTemplate restTemplate = new RestTemplate();
 		Gson gson = new Gson();
@@ -329,14 +338,16 @@ public class VentaMedicamentosServlet extends HttpServlet {
 				System.out.println("cola2");
 
 				/* messageProducer.send("HHHH"); */
-				ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
-						"tcp://localhost:61616");
+				//ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
+				//		"tcp://localhost:61616");
 
+				/* 
 				final JmsTemplate jmsTemplate;
 				jmsTemplate = new JmsTemplate();
 				jmsTemplate.setConnectionFactory(connectionFactory);
 				jmsTemplate.convertAndSend("colaVentas", bytes);
-
+				*/
+				messageProducer.send(bytes);
 			}
 			System.out.println("cola3");
 		}

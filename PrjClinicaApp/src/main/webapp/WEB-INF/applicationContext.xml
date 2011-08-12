@@ -15,7 +15,7 @@
 
 	<bean id="messageProducer" class="pe.edu.upc.dsd.grupoclass.jms.MessageProducer">
 		<property name="jmsTemplate" ref="jmsTemplate" />
-		<property name="requestDestination" value="ventaMedicinas" />
+		<property name="requestDestination" value="colaVentas" />
 	</bean>
 
 
