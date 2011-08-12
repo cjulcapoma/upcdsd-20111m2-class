@@ -1,18 +1,20 @@
 package pe.edu.upc.dsd.grupoclass.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jms.ConnectionFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.activemq.util.ByteArrayOutputStream;
-import org.springframework.test.context.ContextConfiguration;
+import org.apache.activemq.ActiveMQConnectionFactory;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.client.RestTemplate;
 
 import pe.edu.upc.dsd.grupoclass.bean.AfiliadoBean;
@@ -24,7 +26,7 @@ import pe.edu.upc.dsd.grupoclass.dao.ConstantesDao;
 import pe.edu.upc.dsd.grupoclass.jms.MessageProducer;
 
 import com.google.gson.Gson;
-@ContextConfiguration("/applicationContext.xml")
+
 /**
  * Servlet implementation class VentaMedicamentosServlet
  */
@@ -149,7 +151,7 @@ public class VentaMedicamentosServlet extends HttpServlet {
 			String paciente = request.getParameter("nroConsulta");
 			String montoP = request.getParameter("nroConsulta");
 */
-			/*
+			
 			System.out.println("cola");
 			ReciboCobroBean reciboCobro = new ReciboCobroBean();
 
@@ -165,8 +167,16 @@ public class VentaMedicamentosServlet extends HttpServlet {
 
 			System.out.println(reciboCobro.getDniPaciente());
 			System.out.println("cola2");
-		*/
-			messageProducer.send("HHHH");
+		
+			/*messageProducer.send("HHHH");*/
+	        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+
+
+			final JmsTemplate jmsTemplate;
+			jmsTemplate = new JmsTemplate();
+			jmsTemplate.setConnectionFactory(connectionFactory);
+			jmsTemplate.convertAndSend("colaVentas",bytes);
+			
 
 			System.out.println("cola3");
 		}
