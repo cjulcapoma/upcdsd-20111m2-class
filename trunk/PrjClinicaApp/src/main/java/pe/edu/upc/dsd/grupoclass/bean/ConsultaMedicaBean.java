@@ -27,8 +27,18 @@ public class ConsultaMedicaBean  implements java.io.Serializable {
     private java.lang.String noPaciente;
 
     private java.lang.String tratamiento;
+    
+    private String fechaConsulta;
 
-    public ConsultaMedicaBean() {
+    public String getFechaConsulta() {
+		return fechaConsulta;
+	}
+
+	public void setFechaConsulta(String fechaConsulta) {
+		this.fechaConsulta = fechaConsulta;
+	}
+
+	public ConsultaMedicaBean() {
     }
 
     public ConsultaMedicaBean(

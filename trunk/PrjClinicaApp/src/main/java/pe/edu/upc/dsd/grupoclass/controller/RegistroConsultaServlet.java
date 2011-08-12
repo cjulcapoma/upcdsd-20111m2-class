@@ -1,7 +1,9 @@
 package pe.edu.upc.dsd.grupoclass.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -39,6 +41,7 @@ public class RegistroConsultaServlet extends HttpServlet {
 		String paginaDestino = "frmRegistroConsultaMedica.jsp";
 				
 		String accion = request.getParameter("hdAccion").toString();
+		System.out.println("entro al servlet");
 		
 		if(accion.equals("obtenerDatosConsulta")){
 			String nroConsulta = request.getParameter("nroConsulta");
@@ -74,6 +77,19 @@ public class RegistroConsultaServlet extends HttpServlet {
 					}
 					session.setAttribute("examenes", examenes);
 				}
+				
+				//consultasMedicas
+				ConsultaMedicaBean[] listaConsultas = 
+					consultaMedicaCliente.obtenerHistorialConsultasPaciente(consultaMedicaBean.getDniPaciente());
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				ConsultaMedicaBean consulta;
+				for(int i=0; i<listaConsultas.length; i++){					
+					consulta = (ConsultaMedicaBean)listaConsultas[i];
+					Date dia = consulta.getFechaHoraConsulta().getTime();
+					consulta.setFechaConsulta(sdf.format(dia));	
+				}
+				session.setAttribute("consultasMedicas", listaConsultas);
+				
 			}else{
 				session.setAttribute("consulta", null);
 				session.setAttribute("medicamentos", null);
@@ -106,12 +122,11 @@ public class RegistroConsultaServlet extends HttpServlet {
 				medicamentoRecetaBean.setNoMedicamento(noMedicina);
 				medicamentoRecetaBean.setCantidad(cantidad);
 				medicamentos.add(medicamentoRecetaBean);
-				
-				consultaMedicaBean.setDiagnostico(request.getParameter("diagnostico").toString());
-				consultaMedicaBean.setTratamiento(request.getParameter("tratamiento").toString());
-				
 				session.setAttribute("medicinas", medicamentos);				
 			}
+			
+			consultaMedicaBean.setDiagnostico(request.getParameter("diagnostico").toString());
+			consultaMedicaBean.setTratamiento(request.getParameter("tratamiento").toString());
 			session.setAttribute("consulta", consultaMedicaBean);				
 			
 		}else if(accion.equals("agregarExamen")){			
@@ -140,12 +155,11 @@ public class RegistroConsultaServlet extends HttpServlet {
 				examenConsultaBean.setNoExamen(noExamen);
 				examenConsultaBean.setCantidad(cantidad);
 				examenes.add(examenConsultaBean);
-				
-				consultaMedicaBean.setDiagnostico(request.getParameter("diagnostico").toString());
-				consultaMedicaBean.setTratamiento(request.getParameter("tratamiento").toString());
-				
 				session.setAttribute("examenes", examenes);
 			}			
+			
+			consultaMedicaBean.setDiagnostico(request.getParameter("diagnostico").toString());
+			consultaMedicaBean.setTratamiento(request.getParameter("tratamiento").toString());
 			session.setAttribute("consulta", consultaMedicaBean);
 			
 		}else if(accion.equals("eliminarMedicina")){
@@ -174,6 +188,19 @@ public class RegistroConsultaServlet extends HttpServlet {
 				}
 			}			
 			session.setAttribute("medicinas", medicamentos);
+			session.setAttribute("consulta", consultaMedicaBean);
+		
+		}else if(accion.equals("obtenerNombreMedicina")){
+			
+			String codMedicina = request.getParameter("codMedicina").toString();
+			String nombreMedicina = constantesDao.obtenerNombreMedicamentoPorCodigo(codMedicina);
+			
+			request.setAttribute("codigoMedicina", codMedicina);
+			request.setAttribute("nombreMedicina", nombreMedicina);
+			
+			consultaMedicaBean = (ConsultaMedicaBean)session.getAttribute("consulta");
+			consultaMedicaBean.setDiagnostico(request.getParameter("diagnostico").toString());
+			consultaMedicaBean.setTratamiento(request.getParameter("tratamiento").toString());
 			session.setAttribute("consulta", consultaMedicaBean);
 			
 		}else if(accion.equals("registrarConsultaMedica")){

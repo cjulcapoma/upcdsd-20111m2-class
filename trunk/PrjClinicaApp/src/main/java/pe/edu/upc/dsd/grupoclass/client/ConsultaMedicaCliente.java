@@ -45,8 +45,7 @@ public class ConsultaMedicaCliente {
 		}		
 		return resultado;
 	}
-	
-	
+		
 	public ConsultaMedicaBean obtenerConsultaMedica(int idConsultaMedica) throws RemoteException{		
 		ConsultaMedicaBean consultaMedicaBean = null;
 		try {
@@ -61,5 +60,22 @@ public class ConsultaMedicaCliente {
 		}		
 		return consultaMedicaBean;
 	}
+
+	public ConsultaMedicaBean[] obtenerHistorialConsultasPaciente(String dniPaciente)throws RemoteException{		
+		ConsultaMedicaBean[] listaConsultas = new ConsultaMedicaBean[20];
+		try {
+			ConsultaMedicaService consultaMedicaWS =
+				consultaMedicaServiceLocator.getConsultaMedicaServiceImplPort();
+						
+			listaConsultas = consultaMedicaWS.obtenerHistorialConsultasPaciente(dniPaciente);
+			
+		} catch (ServiceException e) {
+			System.out.println("errorrr");
+			e.printStackTrace();
+		}		
+		return listaConsultas;
+	}
+
+
 }
  
