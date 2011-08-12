@@ -10,6 +10,23 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/layout.css" rel="stylesheet" type="text/css" />
+
+<script language="javascript"> 
+
+function obtenerDatosConsulta(){
+    this.document.forms[0].hdAccion.value='obtenerDatosConsulta';
+    this.document.forms[0].action='registroPagoConsultaServlet';
+    this.document.forms[0].submit();
+}
+
+function registrarPagoConsulta(){
+    this.document.forms[0].hdAccion.value='registrarPagoConsulta';
+    this.document.forms[0].action='registroPagoConsultaServlet';
+    this.document.forms[0].submit();
+}
+
+</script>
+
 </head>
 <body id="registroConsultaMedica">
 
@@ -55,7 +72,8 @@
 							<td width="125px"><input type="text" size="15">
 							</td>
 							<td width="30px">&nbsp;</td>
-							<td width><input type="button" class="button" value=" Consultar ">
+							<td width><input type="button" class="button" value=" Consultar" 
+							onclick="javascript:obtenerDatosConsulta()">
 							</td>
 							<td width="60px">&nbsp;</td>
 						</tr>
@@ -121,8 +139,10 @@
             <!-- .box -->
                   <table width="100%">
                   	<tr>
-                  		<td align="center"><input type="button" class="button" value=" Registrar "></td>             		
-                  		<td align="center"><input onclick="location.href='index.jsp'" type="button" class="button" value="Cerrar"></td>
+                  		<td align="center"><input type="button" class="button" value=" Registrar "
+                  		onclick="javascript:registrarPagoConsulta()"></td>             		
+                  		<td align="center">
+                  		<input onclick="location.href='index.jsp'" type="button" class="button" value="Cerrar"></td>
                   		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   	</tr>
                   </table>                   	
@@ -138,8 +158,10 @@
   <!-- footer -->
   <div id="footer">
   	<div class="container">
-      <div class="inside">
-      	&nbsp;&copy; 2010 &nbsp; &nbsp;
+       <div class="inside">
+      	&nbsp;&copy; 2011 &nbsp; &nbsp;<input type="hidden" name="hdAccion">
+      	<input type="hidden" name="hdIdMedicina">
+      	<input type="hidden" name="hdIdExamen">
       </div>
     </div>
   </div>
