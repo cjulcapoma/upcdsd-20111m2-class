@@ -72,8 +72,19 @@ public class VentaMedicamentosServlet extends HttpServlet {
 		session.setAttribute("descuento", "N/A");
 		session.setAttribute("monto", "N/A");
 		session.setAttribute("montoT", "N/A");
-
-		session.setAttribute("hdDni", "99999");
+		session.setAttribute("hdDni", "0");
+		session.setAttribute("hdPaciente", "0");
+		session.setAttribute("hdMontoT", "0");
+		session.setAttribute("hdDescuento", "0");
+		System.out.println(session.getAttribute("hdMontoT"));
+		/*
+		String dniC = request.getParameter("hdDni");
+		String pacienteC = request.getParameter("hdPaciente");
+		String montoPC = request.getParameter("hdMontoT");
+		String descuentoC = request.getParameter("hdDescuento");
+		*/
+		
+		
 		String accion = request.getParameter("hdAccion").toString();
 
 		if (accion.equals("obtenerDatosPaciente")) {
@@ -147,17 +158,27 @@ public class VentaMedicamentosServlet extends HttpServlet {
 			
 			
 			/*
-			String dni = request.getParameter("dni");
-			String paciente = request.getParameter("nroConsulta");
-			String montoP = request.getParameter("nroConsulta");
+			String dniC = request.getParameter("hdDni");
+			String pacienteC = request.getParameter("hdPaciente");
+			String montoPC = request.getParameter("hdMontoT");
+			String descuentoC = request.getParameter("hdDescuento");
+			
 */
 			
 			System.out.println("cola");
 			ReciboCobroBean reciboCobro = new ReciboCobroBean();
 
+			/*if (montoPC.equalsIgnoreCase("0")) {}else{
+				
+				reciboCobro.setDniPaciente(dniC);			
+				reciboCobro.setNoPaciente(pacienteC);
+				reciboCobro.setMntPagado(Double.valueOf(montoPC) - Double.valueOf(descuentoC));
+				 
+				  */
 			reciboCobro.setDniPaciente("43886126");			
 			reciboCobro.setNoPaciente("Juan Diaz");
 			reciboCobro.setMntPagado(200);
+			
 
 			ByteArrayOutputStream bs = new ByteArrayOutputStream();
 			ObjectOutputStream os = new ObjectOutputStream(bs);
@@ -177,7 +198,7 @@ public class VentaMedicamentosServlet extends HttpServlet {
 			jmsTemplate.setConnectionFactory(connectionFactory);
 			jmsTemplate.convertAndSend("colaVentas",bytes);
 			
-
+//}
 			System.out.println("cola3");
 		}
 		System.out.println("pasooo");
