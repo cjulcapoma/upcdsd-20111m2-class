@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,10 +23,37 @@ $(function() {
 	
 });
 </script>
+<script language="javascript"> 
+
+function obtenerHorarios(){
+    this.document.forms[0].hdAccion.value='obtenerHorarios';
+    this.document.forms[0].action='registroReservaServlet';
+    this.document.forms[0].submit();
+}
+
+function reservarHorario(){
+    this.document.forms[0].hdAccion.value='reservarHorario';
+    this.document.forms[0].action='registroReservaServlet';
+    this.document.forms[0].submit();
+}
+
+function registrarReservaMedica(){
+    this.document.forms[0].hdAccion.value='registrarReservaMedica';
+    this.document.forms[0].action='registroReservaServlet';
+    this.document.forms[0].submit();
+}
+
+function cerrarRegistroReservaMedica(){
+    this.document.forms[0].hdAccion.value='cerrarReservaConsultaMedica';
+    this.document.forms[0].action='registroReservaServlet';
+    this.document.forms[0].submit();
+    alert("Se guardaron los datos de la reserva");
+}
+</script>
 <!-- Calendario JQuery-UI -->
 </head>
 <body id="registroReservaMedica">
-
+<form name="frmRegistroReservaMedica">
 <!-- header -->
   <div id="header">
     <div class="container">
@@ -65,7 +93,7 @@ $(function() {
                   	<tr>
                   		<td width ="80px">Sucursal:</td>
                   		<td width ="125px">                  		
-                  		<select>
+                  		<select name="noSucursal">
                   		<option>Sucursal San Borja</option> 
                   		<option>Sucursal San Isidro</option>
                   		<option>Sucursal San Miguel</option>
@@ -73,13 +101,13 @@ $(function() {
                   		</select>
                   		</td>
                   		<td width ="30px">&nbsp;</td>  
-                  		<td width><input class="button" type="button" value="Consultar"></td>     
+                  		<td width><input class="button" type="button" value="Consultar" onclick="javascript:obtenerReservas()"></td>     
                   		<td width ="60px">&nbsp;</td>             		
                   	</tr>
                   	<tr>
                   		<td width ="80px">Especialidad:</td>
                   		<td>
-                  		<select>
+                  		<select name="noEspecialidad">
                   		<option>Medicina General</option> 
                   		<option>Oftamología</option>
                   		<option>Traumatología</option>                  		
@@ -103,12 +131,16 @@ $(function() {
                   					<th width ="300px">Nombre Doctor</th>
                   					<th width ="200px">Horario</th>
                   					<th width ="70px">Reservar</th>
-                  				</tr>                  				
-                  				<tr>
-                  					<td>&nbsp;</td>
-                  					<td>&nbsp;</td>                  					
-                  					<td align="center"><a href="#">Reservar</a></td>
-                  				</tr>
+                  				</tr>             				
+                  				
+                  				<c:forEach var="medicina" items="${medicinas}">
+					                <tr>
+					                    <td><c:out value="${horario.noDoctor}"/></td>
+					                    <td><c:out value="${horario.noHorario}"/></td>					                    
+					                    <td><input type="button" value="Reservar"
+					                    	onclick="javascript:reservar('<c:out value="${horario.noHorario}"/>')"></td>
+					                </tr>
+					            </c:forEach>
                   			</table>
 						</td>
                   	</tr>
@@ -123,24 +155,24 @@ $(function() {
                   <table width="100%" border="0">
                   	<tr>
                   		<td width ="80px">Doctor:</td>
-                  		<td colspan="9">[Nombre del Doctor Seleccionado]</td>                  		
+                  		<td colspan="9"><c:out value="${reserva.noDoctor}"/></td>                  		
                   	</tr>
                   	<tr>
                   		<td width ="80px">Fecha:</td>
-                  		<td width ="80px">[Fecha] </td>
+                  		<td width ="80px"><c:out value="${reserva.noFecha}"/></td>
                   		<td>&nbsp;</td>
                   		<td width ="50px">Hora:</td>
                   		<td colspan="2" width ="50px" >
-                  		[Hora]
+                  		<c:out value="${reserva.noHora}"/>
                   		</td>                  		
                   		<td>&nbsp;</td>                  		
                   	</tr>
                   	<tr>
                   		<td width ="80px">D.N.I.:</td>
-                  		<td><input type="text"></td>
+                  		<td><input type="text" name="dniPaciente"></td>
                   		<td>&nbsp;</td>
                   		<td width ="80px">Nombre:</td>
-                  		<td colspan="5"><input type="text" ></td>                  		
+                  		<td colspan="5"><input type="text" name="noPaciente"></td>                  		
                   	</tr>
                   </table>                  	
                 </div>
@@ -151,8 +183,8 @@ $(function() {
                 <div class="inner">
                   <table width="100%">
                   	<tr>
-                  		<td align="center"><input class="button" type="button" value=" Registrar "></td>             		
-                  		<td align="center"><input onclick="location.href='index.jsp'" class="button" type="button" value="Cerrar"></td>                  		
+                  		<td align="center"><input class="button" type="button" value=" Registrar " onclick="javascript:registrarReservaMedica()"></td>             		
+                  		<td align="center"><input onclick="location.href='index.jsp'" class="button" type="button" value="Cerrar" onclick="javascript:cerrarRegistroConsultaMedica()"></td>                  		
                   	</tr>
                   </table>                   	
                 </div>
@@ -170,12 +202,12 @@ $(function() {
   <div id="footer">
   	<div class="container">
       <div class="inside">
-      	&nbsp;&copy; 2010 &nbsp; &nbsp;
+      	&nbsp;&copy; 2011 &nbsp; &nbsp;
       </div>
     </div>
   </div>
 
 
-
+</form>
 </body>
 </html>

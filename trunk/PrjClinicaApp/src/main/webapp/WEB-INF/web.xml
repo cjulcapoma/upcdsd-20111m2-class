@@ -29,6 +29,14 @@
     <servlet-name>ventaMedicamentosServlet</servlet-name>
     <url-pattern>/ventaMedicamentosServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>registroReservaServlet</servlet-name>
+  	<servlet-class>pe.edu.upc.dsd.grupoclass.controller.RegistroReservaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>registroReservaServlet</servlet-name>
+  	<url-pattern>/registroReservaServlet</url-pattern>
+  </servlet-mapping>
   <session-config>
         <session-timeout>
             30
