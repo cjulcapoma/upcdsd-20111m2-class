@@ -12,8 +12,6 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/layout.css" rel="stylesheet" type="text/css" />
 
-<script language="javascript" type="text/javascript" src="js/validaciones.js" />
-
 <script language="javascript"> 
 function abrirVentana(url) {
     window.open(url, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, " + 
@@ -27,11 +25,6 @@ function obtenerDatosConsulta(){
 }
 
 function agregarMedicina(){
-	var cantMedicina = this.document.forms[0].cantMedicina.value;
-	if(!validaNumero(cantMedicina)){
-		alert("La cantidad debe ser un numero");
-		return;
-	}	
     this.document.forms[0].hdAccion.value='agregarMedicina';    
     this.document.forms[0].action='registroConsultaServlet';
     this.document.forms[0].submit();
@@ -67,6 +60,7 @@ function cerrarRegistroConsultaMedica(){
     this.document.forms[0].hdAccion.value='cerrarRegistroConsultaMedica';
     this.document.forms[0].action='registroConsultaServlet';
     this.document.forms[0].submit();
+    alert("Se guardaron los datos de la consulta");
 }
 </script>
 
@@ -169,10 +163,6 @@ function cerrarRegistroConsultaMedica(){
                   			onclick="javascript:agregarMedicina()"></td>  
                   	</tr>
                   	<tr>
-                  		<td width ="80px" height="20px">Medicamento:</td>
-                  		<td colspan="6">[Nombre Medicamento]</td>
-                  	</tr>
-                  	<tr>
                   		<td colspan="8">
                   			<table border="1" cellspacing="0" cellpadding="1">
                   				<tr>
@@ -212,10 +202,6 @@ function cerrarRegistroConsultaMedica(){
                   		<td width ="10px">&nbsp;</td>  
                   		<td ><input type="button" class="button" value="Agregar"
                   			onclick="javascript:agregarExamen()"></td>  
-                  	</tr>
-                  	<tr>
-                  		<td width ="80px" height="20px">Examen:</td>
-                  		<td colspan="6">[Nombre del Examen]</td>
                   	</tr>
                   	<tr>
                   		<td colspan="8">
