@@ -136,7 +136,7 @@
 										</tr>
 										<tr>
 											<td width="240px" height="20px">Monto a Pagar: ${monto}</td>
-											<td width="240px" height="20px">Descuento: ${descuento}</td>
+											<td width="240px" height="20px">Descuento: ${descuento}<input type="hidden" name="hdDescuento"></td>
 										</tr>
 										<tr>
 											<td width="240px" height="20px">Monto Total a Pagar: ${montoT}<input type="hidden" name="hdMontoT"></td>
