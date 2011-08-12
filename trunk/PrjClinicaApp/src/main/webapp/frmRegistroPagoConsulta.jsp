@@ -27,7 +27,8 @@
       	<li><a href="frmRegistroPagoConsulta.jsp" class="current">Pago Consulta</a></li>        
         <li><a href="frmRegistroConsultaMedica.jsp" >Atención Consulta</a></li>
         <li><a href="frmVentaMedicamentos.jsp" >Medicamentos</a></li>
-        <li><a href="frmRegistroExamenMedico.jsp"  >Examen Médico</a></li>          
+        <li><a href="frmRegistroExamenMedico.jsp"  >Examen Médico</a></li>     
+             
       </ul>
       <!-- /.nav -->      
     </div>
