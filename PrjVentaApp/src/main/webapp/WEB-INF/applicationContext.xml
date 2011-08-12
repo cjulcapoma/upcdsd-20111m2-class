@@ -17,7 +17,7 @@
 	<bean id="messageConsumer" class="pe.edu.upc.dsd.grupoclass.jms.MessageConsumer" />
 
 	<jms:listener-container destination-type="queue">
-		<jms:listener destination="queue_request" ref="messageConsumer" />
+		<jms:listener destination="colaVentas" ref="messageConsumer" />
 	</jms:listener-container>
 
 </beans>
