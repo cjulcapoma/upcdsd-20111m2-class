@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -29,6 +30,7 @@ function registrarPagoConsulta(){
 
 </head>
 <body id="registroConsultaMedica">
+<form>
 
 <!-- header -->
   <div id="header">
@@ -79,7 +81,7 @@ function registrarPagoConsulta(){
 						</tr>
 						<tr>
 							<td width="80px" height="30px">Paciente:</td>
-							<td width="125px"><c:out value="${consulta.noPaciente}"/>
+							<td width="125px"><c:out value="${reserva.noPaciente}"/>
 							</td>
 							<td width="30px">&nbsp;</td>
 							<td width="70px">&nbsp;</td>
@@ -168,6 +170,6 @@ function registrarPagoConsulta(){
   </div>
 
 
-
+</form>
 </body>
 </html>
