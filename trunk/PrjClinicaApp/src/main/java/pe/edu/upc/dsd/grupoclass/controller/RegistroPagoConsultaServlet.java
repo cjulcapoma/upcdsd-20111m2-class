@@ -27,26 +27,41 @@ import pe.edu.upc.dsd.grupoclass.service.ConsultaMedicaService;
 public class RegistroPagoConsultaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegistroPagoConsultaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String paginaDestino = "frmRegistroPagoConsulta.jsp";
+		ReservaMedicaCliente reservaMedicaCliente = new ReservaMedicaCliente();
+		ConstantesDao constantesDao = new ConstantesDao();
+		
+		String accion = request.getParameter("hdAccion").toString();
+		String numdni = request.getParameter("numdni").toString();
+		
+		HttpSession session = request.getSession();	
+		ReservaMedicaBean reservaMedicaBean = null;
+		ReservaMedicaBean[] reservas = null;
+		
+		
+		if(accion.equals("obtenerDatosConsulta")){
+			
+			reservas = reservaMedicaCliente.obtenerReservasMedicas();
+			
+			for(ReservaMedicaBean n : reservas){
+				if(n.getDniPaciente().equals(numdni)){
+					session.setAttribute("consulta", null);
+					session.setAttribute("consulta", null);
+					session.setAttribute("consulta", null);
+				}
+			}
+			request.getRequestDispatcher(paginaDestino).forward(request, response);		
+
+		}
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("en el do postt");	
 	}
 
 }
