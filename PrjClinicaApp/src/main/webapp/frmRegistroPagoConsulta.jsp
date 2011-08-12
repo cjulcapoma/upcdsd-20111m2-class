@@ -69,7 +69,7 @@ function registrarPagoConsulta(){
 					<table width="100%">
 						<tr>
 							<td width="80px">D.N.I:</td>
-							<td width="125px"><input type="text" size="15">
+							<td width="125px"><input type="text" size="15" name = "numdni">
 							</td>
 							<td width="30px">&nbsp;</td>
 							<td width><input type="button" class="button" value=" Consultar" 
@@ -79,7 +79,8 @@ function registrarPagoConsulta(){
 						</tr>
 						<tr>
 							<td width="80px" height="30px">Paciente:</td>
-							<td width="125px">[Nombre de Paciente]</td>
+							<td width="125px"><c:out value="${consulta.noPaciente}"/>
+							</td>
 							<td width="30px">&nbsp;</td>
 							<td width="70px">&nbsp;</td>
 							<td width="95px">&nbsp;</td>
