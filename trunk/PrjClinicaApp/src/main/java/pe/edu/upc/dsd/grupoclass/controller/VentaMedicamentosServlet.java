@@ -1,6 +1,7 @@
 package pe.edu.upc.dsd.grupoclass.controller;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.activemq.util.ByteArrayOutputStream;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.web.client.RestTemplate;
+
 import pe.edu.upc.dsd.grupoclass.bean.AfiliadoBean;
 import pe.edu.upc.dsd.grupoclass.bean.ConsultaMedicaBean;
 import pe.edu.upc.dsd.grupoclass.bean.MedicamentoRecetaBean;
+import pe.edu.upc.dsd.grupoclass.bean.ReciboCobroBean;
 import pe.edu.upc.dsd.grupoclass.client.ConsultaMedicaCliente;
 import pe.edu.upc.dsd.grupoclass.dao.ConstantesDao;
-import org.springframework.web.client.RestTemplate;
-import com.google.gson.Gson;
+import pe.edu.upc.dsd.grupoclass.jms.MessageProducer;
 
+import com.google.gson.Gson;
+@ContextConfiguration("/applicationContext.xml")
 /**
  * Servlet implementation class VentaMedicamentosServlet
  */
@@ -41,16 +48,30 @@ public class VentaMedicamentosServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("en el do gettt");
 		System.out.println("antess del metodoo");
+		
+
+
+		MessageProducer messageProducer = new MessageProducer();
+
 
 		final RestTemplate restTemplate = new RestTemplate();
 		Gson gson = new Gson();
 		List<MedicamentoRecetaBean> medicamentos = new ArrayList<MedicamentoRecetaBean>();
 		HttpSession session = request.getSession();
+		
+				
 		ConsultaMedicaBean consultaMedicaBean = null;
 		ConsultaMedicaCliente consultaMedicaCliente = new ConsultaMedicaCliente();
 		ConstantesDao constantesDao = new ConstantesDao();
 		Double monto = 0.00;
 
+		session.setAttribute("afililiado", "No");
+		session.setAttribute("porcentajeDescuento", "N/A");
+		session.setAttribute("descuento", "N/A");
+		session.setAttribute("monto", "N/A");
+		session.setAttribute("montoT", "N/A");
+
+		session.setAttribute("hdDni", "99999");
 		String accion = request.getParameter("hdAccion").toString();
 
 		if (accion.equals("obtenerDatosPaciente")) {
@@ -62,18 +83,10 @@ public class VentaMedicamentosServlet extends HttpServlet {
 							.obtenerConsultaMedica(Integer
 									.parseInt(nroConsulta));
 
-					String result = restTemplate.getForObject("http://localhost:8080/PrjPolizaSeguro/rest/Poliza/{dni}",String.class,nroConsulta);
-					System.out.println(result);
-					
-					AfiliadoBean afiliado = new AfiliadoBean();
-					afiliado = gson.fromJson(result,AfiliadoBean.class);
-					System.out.println(afiliado.nombre);
-					
-					
 					if (consultaMedicaBean != null) {
 						System.out.println(nroConsulta);
 
-						session.setAttribute("nroConsulta", nroConsulta);						
+						session.setAttribute("nroConsulta", nroConsulta);
 						session.setAttribute("consulta", consultaMedicaBean);
 						MedicamentoRecetaBean[] listaMedicamentos = consultaMedicaBean
 								.getListaMedicamentos();
@@ -89,12 +102,74 @@ public class VentaMedicamentosServlet extends HttpServlet {
 							session.setAttribute("monto", monto);
 
 							System.out.println("not null");
+
+							String result = restTemplate
+									.getForObject(
+											"http://localhost:8080/PrjPolizaSeguro/rest/Poliza/{dni}",
+											String.class,
+											consultaMedicaBean.getDniPaciente());
+							System.out.println(result);
+							/*
+							 * session.setAttribute("afililiado", "No");
+							 * session.setAttribute
+							 * ("porcentajeDescuento","N/A");
+							 * session.setAttribute ("descuento","N/A");
+							 * session.setAttribute ("montoT",monto);
+							 */
+
+							if (result.equalsIgnoreCase("no")) {
+								session.setAttribute("montoT", monto);
+							} else {
+							}
+							AfiliadoBean afiliado = new AfiliadoBean();
+							System.out.println("gson?");
+							afiliado = gson
+									.fromJson(result, AfiliadoBean.class);
+							Double mDescuento = afiliado.desMedicina * monto;
+
+							System.out.println(afiliado.nombre);
+							session.setAttribute("afililiado", "Si");
+							session.setAttribute("porcentajeDescuento",
+									afiliado.desMedicina);
+							session.setAttribute("descuento", mDescuento);
+							session.setAttribute("montoT", monto - mDescuento);
+
 						}
 					}
 				}
 			}
 		}
 
+		if (accion.equals("enviarCola")) {
+			
+			
+			
+			/*
+			String dni = request.getParameter("dni");
+			String paciente = request.getParameter("nroConsulta");
+			String montoP = request.getParameter("nroConsulta");
+*/
+			/*
+			System.out.println("cola");
+			ReciboCobroBean reciboCobro = new ReciboCobroBean();
+
+			reciboCobro.setDniPaciente("43886126");			
+			reciboCobro.setNoPaciente("Juan Diaz");
+			reciboCobro.setMntPagado(200);
+
+			ByteArrayOutputStream bs = new ByteArrayOutputStream();
+			ObjectOutputStream os = new ObjectOutputStream(bs);
+			os.writeObject(reciboCobro); // this es de tipo DatoUdp
+			os.close();
+			byte[] bytes = bs.toByteArray(); // devuelve byte[]
+
+			System.out.println(reciboCobro.getDniPaciente());
+			System.out.println("cola2");
+		*/
+			messageProducer.send("HHHH");
+
+			System.out.println("cola3");
+		}
 		System.out.println("pasooo");
 
 		request.getRequestDispatcher("frmVentaMedicamentos.jsp").forward(

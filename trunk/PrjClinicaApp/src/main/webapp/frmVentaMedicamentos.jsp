@@ -22,10 +22,15 @@
 		this.document.forms[0].action = 'ventaMedicamentosServlet';
 		this.document.forms[0].submit();
 	}
+	function enviarCola(){
+	    this.document.forms[0].hdAccion.value='enviarCola';    
+	    this.document.forms[0].action='ventaMedicamentosServlet';
+	    this.document.forms[0].submit();
+	}
 </script>
 
 </head>
-<body id="registroConsultaMedica">
+<body id="ventaMedicamentos">
 <form name="frmVentaMedicamentos">
 
 	<!-- header -->
@@ -79,10 +84,10 @@
 															
 										<tr>
 											<td width="80px" height="30px">Paciente:</td>
-											<td width="125px">${consulta.noPaciente}</td>
+											<td width="125px">${consulta.noPaciente}<input type="hidden" name="hdPaciente"></td>
 											<td width="30px">&nbsp;</td>
 											<td width="70px">D.N.I:</td>
-											<td width="95px">${consulta.dniPaciente}</td>
+											<td width="95px">${consulta.dniPaciente}<input type="hidden" name="hdDni"></td>
 										</tr>
 									</table>
 									<br>
@@ -134,8 +139,8 @@
 											<td width="240px" height="20px">Descuento: ${descuento}</td>
 										</tr>
 										<tr>
-											<td width="240px" height="20px">Monto Total a Pagar: ${montoT}</td>
-											<td width="240px">Monto Pagado: <input type="text" size="8" name="efectivo">
+											<td width="240px" height="20px">Monto Total a Pagar: ${montoT}<input type="hidden" name="hdMontoT"></td>
+											<td width="240px">Monto Pagado: <input type="text" size="8" name="efectivo" >
 											</td>
 
 										</tr>
@@ -148,7 +153,9 @@
 
 								<table width="100%">
 									<tr>
-										<td align="center"><input type="button" class="button" value=" Registrar "></td>
+										<td align="center"><input type="button" class="button" 
+												value="Registrar"
+												onclick="javascript:enviarCola()"></td>
 										<td align="center"> <input onclick="location.href='index.jsp'" type="button" class="button" value="Cerrar"></td>
 										<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
 									</tr>
