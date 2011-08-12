@@ -19,13 +19,21 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 	
 	public ConsultaMedicaServiceImpl(){
 		Date diaActual = new Date();
-		ConsultaMedicaBean consultaMedica;				
+		ConsultaMedicaBean consultaMedica;	
+		DoctorBean doctor;
 		
 		consultaMedica = new ConsultaMedicaBean();
 		consultaMedica.setIdConsultaMedica(1);
 		consultaMedica.setNoPaciente("Debora Jeronimo");
-		consultaMedica.setDniPaciente("45477388");
+		consultaMedica.setDniPaciente("45477388");		
 		consultaMedica.setFechaHoraConsulta(diaActual);
+		doctor = new DoctorBean();		
+		doctor.setIdDoctor(1);
+		doctor.setNoDoctor("Rafael Juan");
+		doctor.setNoEspecialidad("Medicina General");
+		doctor.setNoSucursal("Sucursal San Borja");
+		doctor.setDeHorario("Lunes y Miercoles de 10:00-12:00");
+		consultaMedica.setDoctor(doctor);		
 		consultaMedica.setIdReservaMedica(1);
 		listaConsultasMedicas.add(consultaMedica);
 		
@@ -34,6 +42,13 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService {
 		consultaMedica.setNoPaciente("Rut Jeronimo");
 		consultaMedica.setDniPaciente("12345678");
 		consultaMedica.setFechaHoraConsulta(diaActual);
+		doctor = new DoctorBean();		
+		doctor.setIdDoctor(2);
+		doctor.setNoDoctor("Juan Luis");
+		doctor.setNoEspecialidad("Oftamología");
+		doctor.setNoSucursal("Sucursal San Borja");
+		doctor.setDeHorario("Martes y Jueves de 10:00-12:00");
+		consultaMedica.setDoctor(doctor);
 		consultaMedica.setIdReservaMedica(2);		
 		listaConsultasMedicas.add(consultaMedica);	
 	}
