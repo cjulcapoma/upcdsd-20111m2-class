@@ -37,6 +37,9 @@ public class RegistroPagoConsultaServlet extends HttpServlet {
 		String accion = request.getParameter("hdAccion").toString();
 		String numdni = request.getParameter("numdni").toString();
 		
+		//System.out.println(numdni);	
+		//System.out.println(accion);	
+
 		HttpSession session = request.getSession();	
 		ReservaMedicaBean reservaMedicaBean = null;
 		ReservaMedicaBean[] reservas = null;
@@ -48,14 +51,17 @@ public class RegistroPagoConsultaServlet extends HttpServlet {
 			
 			for(ReservaMedicaBean n : reservas){
 				if(n.getDniPaciente().equals(numdni)){
-					session.setAttribute("consulta", null);
-					session.setAttribute("consulta", null);
-					session.setAttribute("consulta", null);
+					System.out.println("HOLA" + n.getDniPaciente());	
+					session.setAttribute("reserva", n);
+					//session.setAttribute("consulta", null);
+					//session.setAttribute("consulta", null);
 				}
 			}
 			request.getRequestDispatcher(paginaDestino).forward(request, response);		
 
 		}
+		
+	
 		
 	}
 
