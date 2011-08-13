@@ -25,29 +25,27 @@ $(function() {
 </script>
 <script language="javascript"> 
 
-function obtenerHorarios(){
-    this.document.forms[0].hdAccion.value='obtenerHorarios';
-    this.document.forms[0].action='registroReservaServlet';
+function obtenerHorariosDoctor(){
+    this.document.forms[0].hdAccion.value='obtenerHorariosDoctor';
+    this.document.forms[0].action='RegistroReservaServlet';
     this.document.forms[0].submit();
 }
 
-function reservarHorario(){
-    this.document.forms[0].hdAccion.value='reservarHorario';
-    this.document.forms[0].action='registroReservaServlet';
-    this.document.forms[0].submit();
+function datosNuevaReserva(idDoctor,noDoctor){
+    this.document.forms[0].hdIdDoctor.value=idDoctor;
+    this.document.forms[0].nombreDoctor.value=noDoctor;
 }
 
 function registrarReservaMedica(){
     this.document.forms[0].hdAccion.value='registrarReservaMedica';
-    this.document.forms[0].action='registroReservaServlet';
+    this.document.forms[0].action='RegistroReservaServlet';
     this.document.forms[0].submit();
 }
 
 function cerrarRegistroReservaMedica(){
-    this.document.forms[0].hdAccion.value='cerrarReservaConsultaMedica';
-    this.document.forms[0].action='registroReservaServlet';
-    this.document.forms[0].submit();
-    alert("Se guardaron los datos de la reserva");
+    this.document.forms[0].hdAccion.value='cerrarRegistroReservaMedica';
+    this.document.forms[0].action='RegistroReservaServlet';
+    this.document.forms[0].submit();    
 }
 </script>
 <!-- Calendario JQuery-UI -->
@@ -93,34 +91,29 @@ function cerrarRegistroReservaMedica(){
                   	<tr>
                   		<td width ="80px">Sucursal:</td>
                   		<td width ="125px">                  		
-                  		<select name="noSucursal">
-                  		<option>Sucursal San Borja</option> 
-                  		<option>Sucursal San Isidro</option>
-                  		<option>Sucursal San Miguel</option>
-                  		<option>Sucursal Surco</option>
+                  		<select name="noSucursal" selected="0">
+				  <option value="0">[SELECCIONE]</option>
+                  		  <option value="Sucursal San Borja">Sucursal San Borja</option> 
+                  		  <option value="Sucursal San Isidro">Sucursal San Isidro</option>
+                  		  <option value="Sucursal San Miguel">Sucursal San Miguel</option>
                   		</select>
                   		</td>
                   		<td width ="30px">&nbsp;</td>  
-                  		<td width><input class="button" type="button" value="Consultar" onclick="javascript:obtenerReservas()"></td>     
+                  		<td width><input class="button" type="button" value="Consultar" 
+                  			onclick="javascript:obtenerHorariosDoctor()"></td>     
                   		<td width ="60px">&nbsp;</td>             		
                   	</tr>
                   	<tr>
                   		<td width ="80px">Especialidad:</td>
                   		<td>
-                  		<select name="noEspecialidad">
-                  		<option>Medicina General</option> 
-                  		<option>Oftamología</option>
-                  		<option>Traumatología</option>                  		
+                  		<select name="noEspecialidad" selected="0">
+				  <option value="0">[SELECCIONE]</option>
+                  		  <option value="Medicina General">Medicina General</option> 
+                  		  <option value="Oftamologia">Oftamologia</option>
+                  		  <option value="Traumatologia">Traumatologia</option> 
                   		</select>
                   		</td>
-                  	<tr>
-                  		<td width ="80px">Fecha:</td>
-                  		<td>
-						<!-- Calendario JQuery-UI -->							
-						<input type="text" id="datepicker">
-						<!-- Calendario JQuery-UI -->
-                  		</td>
-                  	</tr>                  	
+                  	</tr>               	
                   	<tr>
                   		<td colspan="8">&nbsp;</td>                  		                 		
                   	</tr>
@@ -133,12 +126,12 @@ function cerrarRegistroReservaMedica(){
                   					<th width ="70px">Reservar</th>
                   				</tr>             				
                   				
-                  				<c:forEach var="medicina" items="${medicinas}">
+                  				<c:forEach var="horario" items="${horarios}">
 					                <tr>
 					                    <td><c:out value="${horario.noDoctor}"/></td>
-					                    <td><c:out value="${horario.noHorario}"/></td>					                    
-					                    <td><input type="button" value="Reservar"
-					                    	onclick="javascript:reservar('<c:out value="${horario.noHorario}"/>')"></td>
+					                    <td><c:out value="${horario.deHorario}"/></td>		
+					                    <td><input type="button" value="Reserva"
+					                    	onclick="javascript:datosNuevaReserva('<c:out value="${horario.idDoctor}"/>','<c:out value="${horario.noDoctor}"/>')"></td>
 					                </tr>
 					            </c:forEach>
                   			</table>
@@ -155,15 +148,26 @@ function cerrarRegistroReservaMedica(){
                   <table width="100%" border="0">
                   	<tr>
                   		<td width ="80px">Doctor:</td>
-                  		<td colspan="9"><c:out value="${reserva.noDoctor}"/></td>                  		
-                  	</tr>
+                  		<td colspan="3"><input type="text" name="nombreDoctor" size="35" readonly="readonly">
+							<input type="hidden" name="hdIdDoctor"></td>              		
+						<td colspan="3"><b><c:out value="${mensajeResultado}"/></b></td>
+					</tr>
                   	<tr>
                   		<td width ="80px">Fecha:</td>
-                  		<td width ="80px"><c:out value="${reserva.noFecha}"/></td>
+                  		<td width ="80px"><input type="text" id="datepicker" name="fechaReserva"></td>
                   		<td>&nbsp;</td>
                   		<td width ="50px">Hora:</td>
                   		<td colspan="2" width ="50px" >
-                  		<c:out value="${reserva.noHora}"/>
+                  		<select name="horaReserva">
+                  		  	<option value="10">10</option> 
+                  		  	<option value="11">11</option>
+				  			<option value="14">14</option>
+				  			<option value="15">15</option>
+                  		</select>
+						<select name="minutoReserva">
+                  		  	<option value="00">00</option> 
+                  		  	<option value="30">30</option>
+                  		</select>
                   		</td>                  		
                   		<td>&nbsp;</td>                  		
                   	</tr>
@@ -172,7 +176,7 @@ function cerrarRegistroReservaMedica(){
                   		<td><input type="text" name="dniPaciente"></td>
                   		<td>&nbsp;</td>
                   		<td width ="80px">Nombre:</td>
-                  		<td colspan="5"><input type="text" name="noPaciente"></td>                  		
+                  		<td colspan="5"><input type="text" name="noPaciente" size="30"></td>                  		
                   	</tr>
                   </table>                  	
                 </div>
@@ -183,8 +187,10 @@ function cerrarRegistroReservaMedica(){
                 <div class="inner">
                   <table width="100%">
                   	<tr>
-                  		<td align="center"><input class="button" type="button" value=" Registrar " onclick="javascript:registrarReservaMedica()"></td>             		
-                  		<td align="center"><input onclick="location.href='index.jsp'" class="button" type="button" value="Cerrar" onclick="javascript:cerrarRegistroConsultaMedica()"></td>                  		
+                  		<td align="center"><input class="button" type="button" value="Registrar" 
+                  			onclick="javascript:registrarReservaMedica()"></td>             		
+                  		<td align="center"><input onclick="location.href='index.jsp'" class="button" 
+                  			type="button" value="Cerrar" onclick="javascript:cerrarRegistroReservaMedica()"></td>                  		
                   	</tr>
                   </table>                   	
                 </div>
@@ -202,7 +208,7 @@ function cerrarRegistroReservaMedica(){
   <div id="footer">
   	<div class="container">
       <div class="inside">
-      	&nbsp;&copy; 2011 &nbsp; &nbsp;
+      	&nbsp;&copy; 2011 &nbsp; &nbsp;<input type="hidden" name="hdAccion">
       </div>
     </div>
   </div>
