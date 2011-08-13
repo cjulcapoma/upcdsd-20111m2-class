@@ -1,6 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,6 +11,11 @@
 <link href="css/layout.css" rel="stylesheet" type="text/css" />
 
 <script language="javascript"> 
+function abrirVentana(url) {
+	window.open(url, "nuevo",
+			"directories=no, location=no, menubar=no, scrollbars=yes, "
+					+ "statusbar=no, tittlebar=no, width=900, height=400");
+}
 
 function obtenerDatosConsulta(){
     this.document.forms[0].hdAccion.value='obtenerDatosConsulta';
@@ -20,17 +23,23 @@ function obtenerDatosConsulta(){
     this.document.forms[0].submit();
 }
 
-function registrarPagoConsulta(){
-    this.document.forms[0].hdAccion.value='registrarPagoConsulta';
-    this.document.forms[0].action='registroPagoConsultaServlet';
-    this.document.forms[0].submit();
+function enviarCola() {
+	this.document.forms[0].hdAccion.value = 'enviarCola';
+	this.document.forms[0].action = 'registroPagoConsultaServlet';
+	this.document.forms[0].submit();
 }
+function carga() {
+	this.document.forms[0].hdAccion.value = 'carga';
+	this.document.forms[0].action = 'registroPagoConsultaServlet';
+	this.document.forms[0].submit();
+}
+
 
 </script>
 
 </head>
 <body id="registroConsultaMedica">
-<form>
+<form name=frmRegistroPagoConsulta>
 
 <!-- header -->
   <div id="header">
@@ -63,7 +72,8 @@ function registrarPagoConsulta(){
             	<!-- .box -->
             	<div class="extra-wrap">
                 	<img height="50px" src="images/icon2.png" alt="" class="png img-indent"/>
-                	<h2>Registro de Pago de Consulta Médica</h2>                  
+                	<h2>Registro de Pago de Consulta Médica<input type="button" class="button"
+												value="Carga de datos temporal" onclick="javascript:carga()"></h2>                  
                 </div>
             	<div class="box">              	
                 <div class="inner">
@@ -71,7 +81,7 @@ function registrarPagoConsulta(){
 					<table width="100%">
 						<tr>
 							<td width="80px">D.N.I:</td>
-							<td width="125px"><input type="text" size="15" name = "numdni">
+							<td width="125px"><input type="text" size="15" name = "numdni"><input type="hidden" name="hdDni1" >
 							</td>
 							<td width="30px">&nbsp;</td>
 							<td width><input type="button" class="button" value=" Consultar" 
@@ -81,74 +91,74 @@ function registrarPagoConsulta(){
 						</tr>
 						<tr>
 							<td width="80px" height="30px">Paciente:</td>
-							<td width="125px"><c:out value="${reserva.noPaciente}"/>
+							<td width="125px"><c:out value="${reserva.noPaciente}"/><input type="hidden" name="hdPaciente1" >
 							</td>
 							<td width="30px">&nbsp;</td>
 							<td width="70px">&nbsp;</td>
 							<td width="95px">&nbsp;</td>
 						</tr>
 						<tr>
-							<td width="80px" height="30px">Sucursal:</td>
-							<td width="125px">[Nombre de Paciente]</td>
-							<td width="30px">Especialidad</td>
-							<td width="70px">[Nombre de Especialidad]</td>
-							<td width="95px">&nbsp;</td>
-						</tr>
-						<tr>
 							<td width="80px" height="30px">Doctor:</td>
-							<td width="125px">[Nombre del Doctor]</td>
-							<td width="30px">&nbsp;</td>
-							<td width="70px">&nbsp;</td>
+							<td width="125px"><c:out value="${reserva.doctor.noDoctor}"/></td>
+							<td width="30px">Especialidad: </td>
+							<td width="70px"><c:out value="${reserva.doctor.noEspecialidad}"/></td>
 							<td width="95px">&nbsp;</td>
 						</tr>
+
 					</table>                  	
                 </div>
               </div>
             <!-- /.box -->
             <!-- .box -->
 							<div class="box">
-								<div class="inner">
-									<h4>Datos del Seguro</h4>
+									<div class="inner">
+										<h4>Datos del Seguro</h4>
+										<table width="100%">
+											<tr>
+												<td width="240px">Asegurado: ${afililiado1}</td>
+												<td width="240px">% Descuento: ${porcentajeDescuento1}</td>
+
+											</tr>
+										</table>
+										<br>
+										<h4>Datos del Pago</h4>
+										<table width="100%">
+											<tr>
+
+											</tr>
+											<tr>
+												<td width="240px" height="20px">Monto a Pagar: ${monto1}</td>
+												<td width="240px" height="20px">Descuento: ${descuento1}<input
+													type="hidden" name="hdDescuento1"></td>
+											</tr>
+											<tr>
+												<td width="240px" height="20px">Monto Total a Pagar:
+													${montoT1}<input type="hidden" name="hdMontoT1"></td>
+												<td width="240px">Monto Pagado: <input type="text"
+													size="8" name="efectivo1">
+												</td>
+
+											</tr>
+											<tr>
+												<td width="240px" height="20px"></td>
+												<td width="240px" height="20px">Vuelto: ${vuelto1}</td>
+											</tr>
+										</table>
+									</div>
+
 									<table width="100%">
 										<tr>
-											<td width="240px">Asegurado: [ Si / No ]</td>
-											<td width="240px">% Descuento: [% Descuento]</td>
-
-										</tr>
-									</table>
-									<br>
-									<h4>Datos del Pago</h4>
-									<table width="100%">
-										<tr>
-
-										</tr>
-										<tr>
-											<td width="240px" height="20px">Monto a Pagar: [Monto]</td>
-											<td width="240px" height="20px">Descuento: [Monto
-												Descuento]</td>
-										</tr>
-										<tr>
-											<td width="240px" height="20px">Monto Total a Pagar: [Monto T]</td>
-											<td width="240px">Monto Pagado: <input type="text" size="8">
+											<td align="center"><input type="button" class="button"
+												value="Registrar" onclick="javascript:enviarCola()">
 											</td>
+											<td align="center"><input
+												onclick="location.href='index.jsp'" type="button"
+												class="button" value="Cerrar"></td>
+											<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+										</tr>
 
-										</tr>
-										<tr>
-											<td width="240px" height="20px"></td>
-											<td width="240px" height="20px">Vuelto: [Vuelto] </td>
-										</tr>
+
 									</table>
-								</div>                       
-            <!-- .box -->
-                  <table width="100%">
-                  	<tr>
-                  		<td align="center"><input type="button" class="button" value=" Registrar "
-                  		onclick="javascript:registrarPagoConsulta()"></td>             		
-                  		<td align="center">
-                  		<input onclick="location.href='index.jsp'" type="button" class="button" value="Cerrar"></td>
-                  		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                  	</tr>
-                  </table>                   	
                <br> <br>
             <!-- /.box -->
             </div>

@@ -154,6 +154,7 @@ public class VentaMedicamentosServlet extends HttpServlet {
 				
 				
 				session.removeValue("consulta");
+				session.setAttribute("monto", "0");
 				session.setAttribute("montoT", "0");;
 				session.setAttribute("afililiado", "No");
 				session.setAttribute("porcentajeDescuento","0");
@@ -190,6 +191,8 @@ public class VentaMedicamentosServlet extends HttpServlet {
 					
 
 					session.removeValue("consulta");
+					
+					session.setAttribute("monto", "0");
 					session.setAttribute("montoT", "0");;
 					session.setAttribute("afililiado", "No");
 					session.setAttribute("porcentajeDescuento","0");
@@ -264,7 +267,7 @@ public class VentaMedicamentosServlet extends HttpServlet {
 								// session.setAttribute("monto", "N/A");
 								// session.setAttribute("montoT", "N/A");
 							} else {
-							}
+							
 							AfiliadoBean afiliado = new AfiliadoBean();
 							System.out.println("gson?");
 							afiliado = gson
@@ -284,7 +287,7 @@ public class VentaMedicamentosServlet extends HttpServlet {
 							System.out.println(afiliado.nombre);
 							System.out.println( monto - mDescuento);
 							System.out.println(session.getAttribute("hdDni"));
-							
+							}
 
 						}
 					}
