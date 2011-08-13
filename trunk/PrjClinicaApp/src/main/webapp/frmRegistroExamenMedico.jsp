@@ -11,6 +11,34 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/layout.css" rel="stylesheet" type="text/css" />
+<script language="javascript"> 
+
+function obtenerDatosConsulta(){
+    this.document.forms[0].hdAccion.value='obtenerDatosConsulta';
+    this.document.forms[0].action='registroExamenMedicoServlet';
+    this.document.forms[0].submit();
+}
+
+function seleccionarExamenMedico(){
+    this.document.forms[0].hdAccion.value='seleccionarExamenMedico';
+    this.document.forms[0].action='registroExamenMedicoServlet';
+    this.document.forms[0].hdIdExamen.value=idExamen;
+    this.document.forms[0].submit();
+}
+
+function registrarExamenMedico(){
+    this.document.forms[0].hdAccion.value='registrarExamenMedico';
+    this.document.forms[0].action='registroExamenMedicoServlet';
+    this.document.forms[0].submit();
+}
+
+function cerrarRegistroConsultaMedica(){
+    this.document.forms[0].hdAccion.value='cerrarRegistroExamenMedico';
+    this.document.forms[0].action='registroExamenMedicoServlet';
+    this.document.forms[0].submit();
+    alert("Se guardaron los datos de la consulta");
+}
+</script>
 </head>
 <body id="registroExamenMedico">
 
@@ -56,10 +84,10 @@
                   <table width="100%">
                   	<tr height="20px">
                   		<td width ="80px" >N° Consulta:</td>
-                  		<td width ="80px"><input type="text" size="12"></td> 
+                  		<td width ="80px"><input type="text" size="12" name="nroConsulta"></td> 
 						<td width ="20px">&nbsp;</td>  
                   		<td width ="20px">&nbsp;</td>  
-                  		<td ><input class="button" type="button" value="Consultar"></td>  
+                  		<td ><input class="button" type="button" value="Consultar" onclick="javascript:obtenerDatosConsulta()"></td>  
                   	</tr>
                   	<tr>
                   		<td colspan="8">
@@ -70,12 +98,15 @@
                   					<th width ="70px">Cantidad</th>
                   					<th width ="70px">Resultado</th>
                   				</tr>                  				
-                  				<tr>
-                  					<td>&nbsp;</td>
-                  					<td>&nbsp;</td>
-                  					<td>&nbsp;</td>
-                  					<td align="center"><a href="#">Resultado</a></td>
-                  				</tr>
+                  				 <c:forEach var="examen" items="${examenes}">
+					                <tr>
+					                    <td><c:out value="${examen.coExamenMedico}"/></td>
+					                    <td><c:out value="${examen.noExamen}"/></td>
+					                    <td><c:out value="${examen.cantidad}"/></td>
+					                    <td><input type="button" value="Seleccionar"
+					                    	onclick="javascript:seleccionarExamenMedico('<c:out value="${examen.idExamenMedico}"/>')"></td>
+					                </tr>
+					            </c:forEach>
                   			</table>
 						</td>
                   	</tr>
@@ -89,10 +120,10 @@
                   <h4>Datos del Resultado</h4>
                   <table width="100%">
                   	<tr>
-                  		<td width ="100%">Resultado de Examen [Codigo de examen]</td>             		
+                  		<td width ="100%">Resultado de Examen "${examen.noExamen}"</td>             		
                   	</tr>
                   	<tr>
-                  		<td><textarea cols="100" rows="3"></textarea></td>          		
+                  		<td><textarea cols="100" rows="3" value="${examenSeleccionado.resultado}"></textarea></td>          		
                   	</tr>
                   </table>                   	
                 </div>
@@ -103,8 +134,10 @@
                 <div class="inner">
                   <table width="100%">
                   	<tr>
-                  		<td align="center"><input type="button" class="button" value=" Registrar "></td>             		
-                  		<td align="center"><input onclick="location.href='index.jsp'" type="button" class="button" value="Cerrar"></td>
+                  			<td align="center"><input type="button" class="button" value="Registrar"
+                  			onclick="javascript:registrarExamenMedico()"></td>             		
+                  		<td align="center"><input type="button" class="button" value="Cerrar"
+                  			onclick="javascript:cerrarRegistroExamenMedica()"></td>
                   		<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   	</tr>
                   </table>                   	
@@ -123,8 +156,8 @@
   <!-- footer -->
   <div id="footer">
   	<div class="container">
-      <div class="inside">
-      	&nbsp;&copy; 2010 &nbsp; &nbsp;
+      <div class="inside"><input type="hidden" name="hdAccion">
+      	&nbsp;&copy; 2011 &nbsp; &nbsp;
       </div>
     </div>
   </div>
