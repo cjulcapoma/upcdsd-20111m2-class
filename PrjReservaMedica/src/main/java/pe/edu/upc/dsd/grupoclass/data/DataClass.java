@@ -15,58 +15,58 @@ public class DataClass {
 		HorarioDoctorBean hdoctor;
 		
 		hdoctor = new HorarioDoctorBean();		
-		hdoctor.setIdDoctor(1);
-		hdoctor.setFecha("10/10/2011");
-		hdoctor.setHora("10:00");
+		hdoctor.setIdDoctor(3);
+		hdoctor.setFecha("12/08/2011");
+		hdoctor.setHora("14:00");
 		hdoctor.setIndReserva(true);
 		listaHorariosDoctor.add(hdoctor);
 		
 		hdoctor = new HorarioDoctorBean();
-		hdoctor.setIdDoctor(1);
-		hdoctor.setFecha("10/10/2011");
-		hdoctor.setHora("10:30");
+		hdoctor.setIdDoctor(3);
+		hdoctor.setFecha("12/08/2011");
+		hdoctor.setHora("14:30");
 		hdoctor.setIndReserva(true);
 		listaHorariosDoctor.add(hdoctor);
 		
 		hdoctor = new HorarioDoctorBean();
-		hdoctor.setIdDoctor(1);
-		hdoctor.setFecha("10/10/2011");
-		hdoctor.setHora("11:00");
+		hdoctor.setIdDoctor(3);
+		hdoctor.setFecha("12/08/2011");
+		hdoctor.setHora("15:00");
 		hdoctor.setIndReserva(true);
 		listaHorariosDoctor.add(hdoctor);
 		
 		hdoctor = new HorarioDoctorBean();
-		hdoctor.setIdDoctor(1);
-		hdoctor.setFecha("10/10/2011");
-		hdoctor.setHora("11:30");
+		hdoctor.setIdDoctor(3);
+		hdoctor.setFecha("12/08/2011");
+		hdoctor.setHora("15:30");
 		hdoctor.setIndReserva(true);
 		listaHorariosDoctor.add(hdoctor);
 
 
 		hdoctor = new HorarioDoctorBean();		
-		hdoctor.setIdDoctor(2);
-		hdoctor.setFecha("11/10/2011");
+		hdoctor.setIdDoctor(1);
+		hdoctor.setFecha("15/10/2011");
 		hdoctor.setHora("10:00");
 		hdoctor.setIndReserva(true);
 		listaHorariosDoctor.add(hdoctor);
 		
 		hdoctor = new HorarioDoctorBean();
-		hdoctor.setIdDoctor(2);
-		hdoctor.setFecha("11/10/2011");
+		hdoctor.setIdDoctor(1);
+		hdoctor.setFecha("15/10/2011");
 		hdoctor.setHora("10:30");
 		hdoctor.setIndReserva(true);
 		listaHorariosDoctor.add(hdoctor);
 		
 		hdoctor = new HorarioDoctorBean();
-		hdoctor.setIdDoctor(2);
-		hdoctor.setFecha("11/10/2011");
+		hdoctor.setIdDoctor(1);
+		hdoctor.setFecha("15/10/2011");
 		hdoctor.setHora("11:00");
 		hdoctor.setIndReserva(true);
 		listaHorariosDoctor.add(hdoctor);
 		
 		hdoctor = new HorarioDoctorBean();
-		hdoctor.setIdDoctor(2);
-		hdoctor.setFecha("11/10/2011");
+		hdoctor.setIdDoctor(1);
+		hdoctor.setFecha("15/10/2011");
 		hdoctor.setHora("11:30");
 		hdoctor.setIndReserva(true);
 		listaHorariosDoctor.add(hdoctor);			
