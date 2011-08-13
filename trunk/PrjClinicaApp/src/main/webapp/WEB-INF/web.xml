@@ -42,6 +42,25 @@
   	<servlet-name>registroReservaServlet</servlet-name>
   	<url-pattern>/registroReservaServlet</url-pattern>
   </servlet-mapping>
+  	<servlet>
+		<servlet-name>registroExmanMedicoServlet</servlet-name>
+		<servlet-class>pe.edu.upc.dsd.grupoclass.controller.RegistroExmanMedicoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>registroExmanMedicoServlet</servlet-name>
+		<url-pattern>/registroExmanMedicoServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>registroPagoConsultaServlet</servlet-name>
+		<servlet-class>pe.edu.upc.dsd.grupoclass.controller.RegistroPagoConsultaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>registroPagoConsultaServlet</servlet-name>
+		<url-pattern>/registroPagoConsultaServlet</url-pattern>
+	</servlet-mapping>
+  
+  
   <session-config>
         <session-timeout>
             30
